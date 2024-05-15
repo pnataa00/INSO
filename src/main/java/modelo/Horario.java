@@ -6,14 +6,17 @@
 package modelo;
 
 import java.io.Serializable;
-import java.time.LocalTime;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -33,16 +36,34 @@ public class Horario implements Serializable{
     
     @Column(name="Dia")
     @Temporal(TemporalType.DATE)
-    private Date ultimaConexion;
+    private Date dia;
     
     @Column(name="HoraInicio")
     @Temporal(TemporalType.TIME)
-    private java.time.LocalTime horaInicio;
+    private Date horaInicio;
     
     @Column(name="HoraFin")
     @Temporal(TemporalType.TIME)
-    private java.time.LocalTime horaFin;
+    private Date horaFin;
+    
+    @ManyToMany
+    @JoinTable(
+        name = "horario_profesor",
+        joinColumns = @JoinColumn(name = "IdHorario"),
+        inverseJoinColumns = @JoinColumn(name = "IdProfesor")
+    )
+    private List<Profesor> profesores;
 
+    public List<Profesor> getProfesores() {
+        return profesores;
+    }
+
+    public void setProfesores(List<Profesor> profesores) {
+        this.profesores = profesores;
+    }
+
+    
+    
     public int getIdHorario() {
         return idHorario;
     }
@@ -51,27 +72,29 @@ public class Horario implements Serializable{
         this.idHorario = idHorario;
     }
 
-    public Date getUltimaConexion() {
-        return ultimaConexion;
+    public Date getDia() {
+        return dia;
     }
 
-    public void setUltimaConexion(Date ultimaConexion) {
-        this.ultimaConexion = ultimaConexion;
+    public void setDia(Date dia) {
+        this.dia = dia;
     }
 
-    public LocalTime getHoraInicio() {
+    
+
+    public Date getHoraInicio() {
         return horaInicio;
     }
 
-    public void setHoraInicio(LocalTime horaInicio) {
+    public void setHoraInicio(Date horaInicio) {
         this.horaInicio = horaInicio;
     }
 
-    public LocalTime getHoraFin() {
+    public Date getHoraFin() {
         return horaFin;
     }
 
-    public void setHoraFin(LocalTime horaFin) {
+    public void setHoraFin(Date horaFin) {
         this.horaFin = horaFin;
     }
 
@@ -79,7 +102,7 @@ public class Horario implements Serializable{
     public int hashCode() {
         int hash = 7;
         hash = 17 * hash + this.idHorario;
-        hash = 17 * hash + Objects.hashCode(this.ultimaConexion);
+        hash = 17 * hash + Objects.hashCode(this.dia);
         hash = 17 * hash + Objects.hashCode(this.horaInicio);
         hash = 17 * hash + Objects.hashCode(this.horaFin);
         return hash;
@@ -100,7 +123,7 @@ public class Horario implements Serializable{
         if (this.idHorario != other.idHorario) {
             return false;
         }
-        if (!Objects.equals(this.ultimaConexion, other.ultimaConexion)) {
+        if (!Objects.equals(this.dia, other.dia)) {
             return false;
         }
         if (!Objects.equals(this.horaInicio, other.horaInicio)) {

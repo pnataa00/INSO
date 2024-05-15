@@ -10,7 +10,11 @@
         
         <h:form>
             
-            
+            <p:outputLabel value="introduzca el nombre de la asignatura"/>
+            <p:inputText value="#{asignaturaController.asignatura.nombre}"/>
+            <p:outputLabel value="introduce el curso"/>
+            <p:inputText value="#{asignaturaController.asignatura.curso}"/>
+            <p:commandButton value="insertar" actionListener="#{asignaturaController.insertarAsignatura()}"/>
             
         </h:form>
         

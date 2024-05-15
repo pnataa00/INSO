@@ -7,6 +7,7 @@ package modelo;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -45,8 +46,8 @@ public class Comentario implements Serializable{
     private Clases clase;
     
     @Column(name="Fecha")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Timestamp fecha;
+    @Temporal(TemporalType.DATE)
+    private Date fecha;
     
     @Column(name="Comentario")
     private String comentario;
@@ -86,11 +87,11 @@ public class Comentario implements Serializable{
         this.clase = clase;
     }
 
-    public Timestamp getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(Timestamp fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 

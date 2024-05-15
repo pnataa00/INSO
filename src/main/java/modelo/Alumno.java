@@ -5,7 +5,9 @@
  */
 package modelo;
 
+import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,13 +23,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="alumnos")
-public class Alumno {
+public class Alumno implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idAlumno;
     
-    @JoinColumn(name="idUsuario")
-    @OneToOne
+    @JoinColumn(name="IdUsuario")
+    @OneToOne(cascade=CascadeType.PERSIST)
     private Usuario usuario;
 
     public int getIdAlumno() {

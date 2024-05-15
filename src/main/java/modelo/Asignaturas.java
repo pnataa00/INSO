@@ -5,12 +5,17 @@
  */
 package modelo;
 
+import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -20,7 +25,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="asignaturas")
-public class Asignaturas {
+public class Asignaturas implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +36,25 @@ public class Asignaturas {
     
     @Column(name="Curso")
     private int curso;
+    
+    @ManyToMany
+    @JoinTable(
+        name = "asignatura_profesor",
+        joinColumns = @JoinColumn(name = "IdAsignatura"),
+        inverseJoinColumns = @JoinColumn(name = "IdProfesor")
+    )
+    private List<Profesor> profesores;
 
+    public List<Profesor> getProfesores() {
+        return profesores;
+    }
+
+    public void setProfesores(List<Profesor> profesores) {
+        this.profesores = profesores;
+    }
+
+    
+    
     public int getIdAsignatura() {
         return idAsignatura;
     }
