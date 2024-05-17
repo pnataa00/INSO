@@ -79,8 +79,7 @@ public class UsuarioController implements Serializable{
                 usuarioEJB.create(usuario);
                 System.out.println("Tipo de usuario: " + usuario.getTipoUsuario());
                 if (usuario.getTipoUsuario().equals("Alumno")) {
-                    alumno.setUsuario(usuario);
-                    
+                    alumno.setUsuario(usuario);                    
                     alumnoEJB.create(alumno);
                     
                 } else if (usuario.getTipoUsuario().equals("Profesor")) {

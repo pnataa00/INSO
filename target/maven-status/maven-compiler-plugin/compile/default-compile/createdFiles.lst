@@ -26,6 +26,7 @@ modelo\Comentario.class
 EJB\ClasesFacade.class
 modelo\Alumno.class
 EJB\UsuarioFacade.class
+controlador\IndexController.class
 modelo\Comentario_.class
 modelo\Profesor.class
 EJB\PagoFacade.class

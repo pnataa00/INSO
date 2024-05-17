@@ -5,66 +5,35 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     
-    <h:outputScript library="/Resources/js" name="calendar.js"/>
+    
     <h:head>
-        <title>Facelet Title</title>
+        <title>Iniciar sesión</title>
+        <h:outputScript library="js" name="calendar.js"/>
     </h:head>
     
     
     <h:body>
-        
-        <div style="display:flex; justify-content:center; align-items:center; height:100vh;">
-            <h:form>
+        <h:form id="login">
+            
+            <h1>Inicio de sesión</h1>
+            <p:fieldset legend="Inserte las credenciales de usuario">
+                <p:panelGrid columns="3">
+                    <p:outputLabel value="Correo electrónico" for="user"/>
+                    <p:inputText id="user" value="#{indexController.usuario.correoElectronico}" required="true" requiredMessage="Introduce tu correo electrónico"/>
+                    <p:message for="user"/>
 
-                <h1 style="text-align:center;">Registro</h1>     
-                
-                <p:panelGrid columns="2">
-                    <p:outputLabel for="name" value="Nombre: " />
-                    <p:inputText id="name" required="true" value="#{usuarioController.usuario.nombre}" requiredMessage="Introduce tu numbre."/>
+                    <p:outputLabel value="Contraseña" for="password"/>
+                    <p:password id="password" value="#{indexController.usuario.contraseña}" required="true" requiredMessage="Introduce tu contraseña"/>
+                    <p:message for="password"/>
 
-                    <p:outputLabel for="password" value="Contraseña: " />
-                    <p:password id="password" required="true" feedback="true" value="#{usuarioController.usuario.contraseña}" requiredMessage="Introduce una contraseña."/>
-
-                    <p:outputLabel for="email" value="Correo Electrónico: "/>
-                    <p:inputText id="email" required="true" value="#{usuarioController.usuario.correoElectronico}" requiredMessage="Introduce un correo electrónico."/>
-
-                    <p:outputLabel for="birthdate" value="Fecha de Nacimiento: "/>
-                    <p:calendar id="birthdate" locale="es" pattern="dd/MM/yyyy" required="true" value="#{usuarioController.usuario.fechaNacimiento}" requiredMessage="Introduce tu fecha de nacimiento."/>
-
-                    <p:outputLabel for="dni" value="DNI:" />
-                    <p:inputText id="dni" required="true" value="#{usuarioController.usuario.DNI}" requiredMessage="Introduce tu DNI."/>
-
-                    <p:outputLabel  value="Tipo Usuario" />
-                    <p:selectOneButton value="#{usuarioController.usuario.tipoUsuario}" required="true" requiredMessage="Introduce tu tipo de usuario" >
-                        <f:selectItem itemLabel="Profesor" itemValue="Profesor"/>
-                        <f:selectItem itemLabel="Alumno" itemValue="Alumno"/>
-                    </p:selectOneButton>
                 </p:panelGrid>
-                
-                <div style="display:flex; justify-content:center; margin-top:20px;">
-                    <p:commandButton value="Registrarse" actionListener="#{usuarioController.insertarUsuario}" ajax="false" icon="pi pi-check" styleClass="ui-button-success" oncomplete="if ($('.ui-messages-error').length > 0) {PF('dialog').show();}"/>
-                </div>
+            </p:fieldset>
+            <p:panelGrid columns="1" />
+                <p:commandButton value="Iniciar Sesión" update="login" action="#{indexController.verificarUsuario()}" />
+        </h:form>
             
-                    
-            
-            </h:form>
-        </div>
         
-        <p:dialog id="dialog" header="Aviso" widgetVar="dialog" modal="true" draggable="false" resizable="false">
-            <p:messages id="messages" showDetail="false" showSummary="true" redisplay="false" showIcon="false"  />
-        </p:dialog>
         
-        <script>
-            function showDialog() {
-                PF('dialog').show();
-            }
-
-            $(document).ready(function() {
-                if($('.ui-messages-error').length > 0) {
-                    showDialog();
-                }
-            });
-        </script>
 
         
         
