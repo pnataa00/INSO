@@ -8,7 +8,7 @@
     
     <h:head>
         <title>Iniciar sesión</title>
-        <h:outputScript library="js" name="calendar.js"/>
+        
     </h:head>
     
     
@@ -16,6 +16,7 @@
         <h:form id="login">
             
             <h1>Inicio de sesión</h1>
+            <p:messages id="msg" severity="info"/>
             <p:fieldset legend="Inserte las credenciales de usuario">
                 <p:panelGrid columns="3">
                     <p:outputLabel value="Correo electrónico" for="user"/>
@@ -29,7 +30,10 @@
                 </p:panelGrid>
             </p:fieldset>
             <p:panelGrid columns="1" />
-                <p:commandButton value="Iniciar Sesión" update="login" action="#{indexController.verificarUsuario()}" />
+                <p:commandButton value="Iniciar Sesión" update="msg" action="#{indexController.verificarUsuario()}" />
+                <h4>¿No estás registrado?</h4>
+                <p:button value="Crear cuenta" outcome="/publico/altaUsuario.xhtml"/>
+                
         </h:form>
             
         

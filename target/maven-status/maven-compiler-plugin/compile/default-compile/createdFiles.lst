@@ -23,6 +23,7 @@ EJB\UsuarioFacadeLocal.class
 EJB\ProfesorFacadeLocal.class
 EJB\ComentarioFacadeLocal.class
 modelo\Comentario.class
+controlador\PlantillaController.class
 EJB\ClasesFacade.class
 modelo\Alumno.class
 EJB\UsuarioFacade.class
