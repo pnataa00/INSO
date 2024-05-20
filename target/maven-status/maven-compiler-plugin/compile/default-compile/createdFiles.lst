@@ -17,11 +17,13 @@ com\mycompany\proyecto\resources\JavaEE8Resource.class
 EJB\ClasesFacadeLocal.class
 EJB\ComentarioFacade.class
 controlador\AsignaturaController.class
+controlador\ProfesorController.class
 modelo\Clases_.class
 EJB\HorarioFacadeLocal.class
 EJB\UsuarioFacadeLocal.class
 EJB\ProfesorFacadeLocal.class
 EJB\ComentarioFacadeLocal.class
+controlador\HorarioController.class
 modelo\Comentario.class
 controlador\PlantillaController.class
 EJB\ClasesFacade.class
