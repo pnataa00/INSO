@@ -7,7 +7,7 @@ import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 import modelo.Profesor;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2024-05-20T13:47:01")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2024-05-24T22:38:28")
 @StaticMetamodel(Horario.class)
 public class Horario_ { 
 

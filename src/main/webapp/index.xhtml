@@ -18,7 +18,7 @@
             <h1>Inicio de sesión</h1>
             <p:messages id="msg" severity="info"/>
             <p:fieldset legend="Inserte las credenciales de usuario">
-                <p:panelGrid columns="3">
+                <p:panelGrid columns="3" id="grid" styleClass="showcase-text-align-center">
                     <p:outputLabel value="Correo electrónico" for="user"/>
                     <p:inputText id="user" value="#{indexController.usuario.correoElectronico}" required="true" requiredMessage="Introduce tu correo electrónico"/>
                     <p:message for="user"/>
@@ -30,7 +30,7 @@
                 </p:panelGrid>
             </p:fieldset>
             <p:panelGrid columns="1" />
-                <p:commandButton value="Iniciar Sesión" update="msg" action="#{indexController.verificarUsuario()}" />
+                <p:commandButton value="Iniciar Sesión" update="msg, grid" action="#{indexController.verificarUsuario()}" />
                 <h4>¿No estás registrado?</h4>
                 <p:button value="Crear cuenta" outcome="/publico/altaUsuario.xhtml"/>
                 

@@ -1,74 +1,71 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
-    
-    
-    <h:head>
-        
-        <title>Registro</title>
-    </h:head>
-    
-    <h:body>
-        <div style="display:flex; justify-content:center; align-items:center; height:100vh;">
-            <h:form>
 
-                <h1 style="text-align:center;">Registro</h1>     
-                <p:messages id="msg" severity="info"/>
-                <p:messages id="msg1" severity="error"/>
-                <p:panelGrid columns="3" id="panel" layout="grid">
-                        
-                        <p:outputLabel for="name" value="Nombre: " />
-                        <p:inputText id="name" required="true" value="#{usuarioController.usuario.nombre}" requiredMessage="Introduce tu nombre."/>
-                        <p:message for="name"/>
+    <body>
+
+        <ui:composition template="./../WEB-INF/template/plantilla.xhtml">
+            <ui:define name="top">
+                
+            </ui:define>
+            <ui:define name="content">
+                <div>
+                    <h:form>
 
 
-                        <p:outputLabel for="password" value="Contraseña: " />
-                        <p:password id="password" required="true" feedback="true" value="#{usuarioController.usuario.contraseña}" requiredMessage="Introduce una contraseña."/>
-                        <p:message for="password"/>
 
-                        <p:outputLabel for="email" value="Correo Electrónico: "/>
-                        <p:inputText id="email" required="true" value="#{usuarioController.usuario.correoElectronico}" requiredMessage="Introduce un correo electrónico."/>
-                        <p:message for="email"/>
+                        <p:messages id="msg" severity="error"/>
+                        <p:fieldset legend="Registro">
+                            <p:panelGrid columns="3" id="panel" >
 
-                        <p:outputLabel for="birthdate" value="Fecha de Nacimiento: "/>
-                        <p:calendar id="birthdate" locale="es"  required="true" value="#{usuarioController.usuario.fechaNacimiento}" requiredMessage="Introduce tu fecha de nacimiento."/>
-                        <p:message for="birthdate"/>
+                                    <p:outputLabel for="name" value="Nombre: " />
+                                    <p:inputText id="name" required="true" value="#{usuarioController.usuario.nombre}" requiredMessage="Introduce tu nombre."/>
+                                    <p:message for="name"/>
 
-                        <p:outputLabel for="dni" value="DNI:" />
-                        <p:inputText id="dni" required="true" value="#{usuarioController.usuario.DNI}" requiredMessage="Introduce tu DNI."/>
-                        <p:message for="dni"/>
 
-                        <p:outputLabel  value="Tipo Usuario" />
-                        <p:selectOneButton value="#{usuarioController.usuario.tipoUsuario}" required="true" requiredMessage="Introduce tu tipo de usuario" >
-                            <f:selectItem itemLabel="Profesor" itemValue="Profesor"/>
-                            <f:selectItem itemLabel="Alumno" itemValue="Alumno"/>
-                        </p:selectOneButton>
-                    
-                </p:panelGrid>
+                                    <p:outputLabel for="password" value="Contraseña: " />
+                                    <p:password id="password" required="true" feedback="true" value="#{usuarioController.usuario.contraseña}" requiredMessage="Introduce una contraseña."/>
+                                    <p:message for="password"/>
 
-                <div style="display:flex; justify-content:center; margin-top:20px;">
-                    
-                    <p:commandButton value="Registrarse" actionListener="#{usuarioController.insertarUsuario}" update="msg, msg1"  />
-                    
+                                    <p:outputLabel for="email" value="Correo Electrónico: "/>
+                                    <p:inputText id="email" required="true" value="#{usuarioController.usuario.correoElectronico}" requiredMessage="Introduce un correo electrónico."/>
+                                    <p:message for="email"/>
+
+                                    <p:outputLabel for="birthdate" value="Fecha de Nacimiento: "/>
+                                    <p:calendar id="birthdate" locale="es"  required="true" value="#{usuarioController.usuario.fechaNacimiento}" requiredMessage="Introduce tu fecha de nacimiento."/>
+                                    <p:message for="birthdate"/>
+
+                                    <p:outputLabel for="dni" value="DNI:" />
+                                    <p:inputText id="dni" required="true" value="#{usuarioController.usuario.DNI}" requiredMessage="Introduce tu DNI."/>
+                                    <p:message for="dni"/>
+
+                                    <p:outputLabel  for="tipo" value="Tipo Usuario" />
+                                    <p:selectOneButton id="tipo" value="#{usuarioController.usuario.tipoUsuario}" required="true" requiredMessage="Introduce tu tipo de usuario" >
+                                        <f:selectItem itemLabel="Profesor" itemValue="Profesor"/>
+                                        <f:selectItem itemLabel="Alumno" itemValue="Alumno"/>
+                                    </p:selectOneButton>
+                                    <p:message for="tipo"/>
+
+                            </p:panelGrid>
+                        </p:fieldset>
+
+                        <div style=" justify-content:center; margin-top:20px;">
+
+                            <p:commandButton value="Registrarse" actionListener="#{usuarioController.insertarUsuario}" update=" msg,panel"  />
+                            <p:button value="Volver atrás" outcome="/index.xhtml"/>
+                        </div>
+
+
+
+                    </h:form>
                 </div>
+            </ui:define>
 
+        </ui:composition>
 
-
-            </h:form>
-        </div>
-        
-
-        
-
-        
-        
-    
-            
-
-    </h:body>
+    </body>
 </html>

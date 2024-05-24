@@ -8,6 +8,7 @@ package controlador;
 import EJB.AlumnoFacadeLocal;
 import EJB.ProfesorFacadeLocal;
 import EJB.UsuarioFacadeLocal;
+import java.io.IOException;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -71,6 +72,12 @@ public class UsuarioController implements Serializable{
         }
 
         return true;
+    }
+    
+    
+    public void volverAtras() throws IOException{
+       
+        FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath() + "/index.xhtml");
     }
     
     public void insertarUsuario(){
