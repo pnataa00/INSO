@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -42,8 +44,9 @@ public class Usuario implements Serializable{
     @Temporal(TemporalType.DATE)
     private Date fechaNacimiento;
     
-    @Column(name="TipoUsuario")
-    private String tipoUsuario;
+    @JoinColumn(name="idRol")
+    @ManyToOne
+    private Rol rol;
     
     @Column(name="DNI")
     private String DNI;
@@ -54,6 +57,14 @@ public class Usuario implements Serializable{
 
     public void setDNI(String DNI) {
         this.DNI = DNI;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 
     
@@ -98,13 +109,7 @@ public class Usuario implements Serializable{
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public String getTipoUsuario() {
-        return tipoUsuario;
-    }
-
-    public void setTipoUsuario(String tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
-    }
+    
 
     @Override
     public int hashCode() {
@@ -114,7 +119,7 @@ public class Usuario implements Serializable{
         hash = 53 * hash + Objects.hashCode(this.correoElectronico);
         hash = 53 * hash + Objects.hashCode(this.contraseña);
         hash = 53 * hash + Objects.hashCode(this.fechaNacimiento);
-        hash = 53 * hash + Objects.hashCode(this.tipoUsuario);
+        
         hash = 53 * hash + Objects.hashCode(this.DNI);
         return hash;
     }
@@ -143,9 +148,7 @@ public class Usuario implements Serializable{
         if (!Objects.equals(this.contraseña, other.contraseña)) {
             return false;
         }
-        if (!Objects.equals(this.tipoUsuario, other.tipoUsuario)) {
-            return false;
-        }
+        
         if (!Objects.equals(this.DNI, other.DNI)) {
             return false;
         }

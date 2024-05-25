@@ -8,6 +8,7 @@ modelo\Pago_.class
 EJB\PagoFacadeLocal.class
 modelo\Usuario_.class
 modelo\Clases.class
+EJB\RolFacade.class
 modelo\Profesor_.class
 com\mycompany\proyecto\JAXRSConfiguration.class
 modelo\Horario.class
@@ -18,14 +19,17 @@ EJB\ClasesFacadeLocal.class
 EJB\ComentarioFacade.class
 controlador\AsignaturaController.class
 controlador\ProfesorController.class
+modelo\Rol_.class
 modelo\Clases_.class
 EJB\HorarioFacadeLocal.class
 EJB\UsuarioFacadeLocal.class
 EJB\ProfesorFacadeLocal.class
+modelo\Rol.class
 EJB\ComentarioFacadeLocal.class
 controlador\HorarioController.class
 modelo\Comentario.class
 controlador\PlantillaController.class
+EJB\RolFacadeLocal.class
 EJB\ClasesFacade.class
 modelo\Alumno.class
 EJB\UsuarioFacade.class

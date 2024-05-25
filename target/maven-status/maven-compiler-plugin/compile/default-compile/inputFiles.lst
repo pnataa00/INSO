@@ -1,6 +1,8 @@
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\HorarioFacadeLocal.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\com\mycompany\proyecto\JAXRSConfiguration.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\com\mycompany\proyecto\resources\JavaEE8Resource.java
+C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\RolFacade.java
+C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\modelo\Rol.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\ClasesFacadeLocal.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\PagoFacade.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\modelo\Pago.java
@@ -12,6 +14,7 @@ C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\controlador\Pro
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\modelo\Usuario.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\controlador\PlantillaController.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\AbstractFacade.java
+C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\RolFacadeLocal.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\AlumnoFacadeLocal.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\ClasesFacade.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\modelo\Alumno.java

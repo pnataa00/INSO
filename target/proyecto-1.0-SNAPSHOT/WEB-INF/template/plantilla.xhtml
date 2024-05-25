@@ -3,20 +3,36 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet library="css" name="default.css"/> 
         <h:outputStylesheet library="css" name="cssLayout.css"/>
         
-        <title>Facelets Template</title>
+        <title>Clases Particulares</title>
     </h:head>
 
     <h:body>
 
         <div id="top">
-            <ui:insert name="top"><f:event type="preRenderView" listener="#{plantillaController.verificarYMostrar()}"/> </ui:insert>
+            <ui:insert name="top">
+                <div>
+                    <p:sidebar widgetVar="sidebarLeft">
+                        <h3>Menú</h3>
+                        <div>
+                            <p:button value="Añadir Asignatura" rendered="#{plantillaController.esAdmin()}" styleClass="ui-button-flat ui-button-plain" style="width: 100%" outcome="/privado/admin/altaAsignatura.xhtml"/>
+                            
+                        </div>
+                    </p:sidebar>
+                    
+                </div>
+            
+            
+            
+            
+            </ui:insert>
         </div>
 
         <div id="content" class="center_content">

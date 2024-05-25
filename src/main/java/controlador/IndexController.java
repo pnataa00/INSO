@@ -43,7 +43,7 @@ public class IndexController implements Serializable{
         
         if(us!=null){
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us);
-            FacesContext.getCurrentInstance().getExternalContext().redirect("principal.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath()+"/privado/principal.xhtml");
             navegacion="principal.xhtml";
             
         }else{
