@@ -2,17 +2,44 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    
     <h:head>
-        <title>Facelet Title</title>
+        <title>Iniciar sesión</title>
+        <h:outputStylesheet library="css" name="index.css"/>
     </h:head>
+    
+    
     <h:body>
-        
-        <h:form>
+        <h:form id="login">
             
-            
-            
+            <h1>Inicio de sesión</h1>
+            <p:messages id="msg" severity="info"/>           
+            <p:fieldset legend="Inserte las credenciales de usuario">
+                <p:panelGrid columns="3" id="grid" styleClass="showcase-text-align-center">
+                    <p:outputLabel value="Correo electrónico" for="user"/>
+                    <p:inputText id="user" value="#{indexController.usuario.correoElectronico}" required="true" requiredMessage="Introduce tu correo electrónico"/>
+                    <p:message for="user"/>
+
+                    <p:outputLabel value="Contraseña" for="password"/>
+                    <p:password id="password" value="#{indexController.usuario.contraseña}" required="true" requiredMessage="Introduce tu contraseña"/>
+                    <p:message for="password"/>
+
+                </p:panelGrid>
+            </p:fieldset>
+            <p:panelGrid columns="1" />
+                <p:commandButton value="Iniciar Sesión" update="msg, grid" action="#{indexController.verificarUsuario()}" />
+                <h4>¿No estás registrado?</h4>
+                <p:button value="Crear cuenta" outcome="/publico/altaUsuario.xhtml"/>
+                
         </h:form>
+            
+        
+        
+
+        
         
     </h:body>
 </html>

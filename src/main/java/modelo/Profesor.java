@@ -5,12 +5,16 @@
  */
 package modelo;
 
+import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -21,15 +25,41 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="profesores")
-public class Profesor {
+public class Profesor implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idProfesor;
     
     @JoinColumn(name="IdUsuario")
-    @OneToOne
+    @OneToOne(cascade=CascadeType.PERSIST)
     private Usuario usuario;
+    
+    @ManyToMany(mappedBy = "profesores")
+    private List<Asignaturas> asignaturas;
+    
+    @ManyToMany(mappedBy = "profesores")
+    private List<Horario> horarios;
+
+    public List<Asignaturas> getAsignaturas() {
+        return asignaturas;
+    }
+
+    public void setAsignaturas(List<Asignaturas> asignaturas) {
+        this.asignaturas = asignaturas;
+    }
+
+    public List<Horario> getHorarios() {
+        return horarios;
+    }
+
+    public void setHorarios(List<Horario> horarios) {
+        this.horarios = horarios;
+    }
+    
+    
+    
+    
 
     public int getIdProfesor() {
         return idProfesor;

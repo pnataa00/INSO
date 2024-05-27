@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:head>
+        <title>Registro</title>
+        <h:outputScript library="js" name="spanishcalendar.js"/>
+    </h:head>
+    
+    <body>
+            
+        
+                <div>
+                    <h:form>
+
+
+
+                        <p:messages id="msg" severity="error"/>
+                        <p:fieldset legend="Registro">
+                            <p:panelGrid columns="3" id="panel" >
+
+                                    <p:outputLabel for="name" value="Nombre: " />
+                                    <p:inputText id="name" required="true" value="#{usuarioController.usuario.nombre}" requiredMessage="Introduce tu nombre."/>
+                                    <p:message for="name"/>
+
+
+                                    <p:outputLabel for="password" value="Contraseña: " />
+                                    <p:password id="password" required="true" feedback="true" value="#{usuarioController.usuario.contraseña}" requiredMessage="Introduce una contraseña."/>
+                                    <p:message for="password"/>
+
+                                    <p:outputLabel for="email" value="Correo Electrónico: "/>
+                                    <p:inputText id="email" required="true" value="#{usuarioController.usuario.correoElectronico}" requiredMessage="Introduce un correo electrónico."/>
+                                    <p:message for="email"/>
+
+                                    <p:outputLabel for="birthdate" value="Fecha de Nacimiento: "/>
+                                    <p:calendar id="birthdate" locale="es"  required="true" value="#{usuarioController.usuario.fechaNacimiento}" requiredMessage="Introduce tu fecha de nacimiento."/>
+                                    <p:message for="birthdate"/>
+
+                                    <p:outputLabel for="dni" value="DNI:" />
+                                    <p:inputText id="dni" required="true" value="#{usuarioController.usuario.DNI}" requiredMessage="Introduce tu DNI."/>
+                                    <p:message for="dni"/>
+
+                                    <p:outputLabel  for="rol" value="Rol" />
+                                    <p:selectOneMenu id="rol" value="#{usuarioController.rol}" required="true" requiredMessage="Introduce tu tipo de usuario" >
+                                        <f:selectItems value="#{usuarioController.roles}"/>
+                                    </p:selectOneMenu>
+                                    <p:message for="rol"/>
+
+                            </p:panelGrid>
+                        </p:fieldset>
+
+                        <div style=" justify-content:center; margin-top:20px;">
+
+                            <p:commandButton value="Registrarse" actionListener="#{usuarioController.insertarUsuario}" update=" msg,panel"  />
+                            <p:button value="Volver atrás" outcome="/index.xhtml"/>
+                        </div>
+
+
+
+                    </h:form>
+                
+                </div>
+           
+        
+
+    </body>
+</html>

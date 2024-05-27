@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
@@ -12,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,7 +26,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="usuarios")
-public class Usuario {
+public class Usuario implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUsuario;
@@ -37,13 +40,35 @@ public class Usuario {
     @Column(name="Contraseña")
     private String contraseña;
     
-    @Column(name="FechaRegistro")
+    @Column(name="FechaNacimiento")
     @Temporal(TemporalType.DATE)
-    private Date fechaRegistro;
+    private Date fechaNacimiento;
     
-    @Column(name="TipoUsuario")
-    private String tipoUsuario;
+    @JoinColumn(name="idRol")
+    @ManyToOne
+    private Rol rol;
+    
+    @Column(name="DNI")
+    private String DNI;
 
+    public String getDNI() {
+        return DNI;
+    }
+
+    public void setDNI(String DNI) {
+        this.DNI = DNI;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+
+    
+    
     public int getIdUsuario() {
         return idUsuario;
     }
@@ -76,31 +101,26 @@ public class Usuario {
         this.contraseña = contraseña;
     }
 
-    public Date getFechaRegistro() {
-        return fechaRegistro;
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
     }
 
-    public void setFechaRegistro(Date fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
-    public String getTipoUsuario() {
-        return tipoUsuario;
-    }
-
-    public void setTipoUsuario(String tipoUsuario) {
-        this.tipoUsuario = tipoUsuario;
-    }
+    
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 97 * hash + this.idUsuario;
-        hash = 97 * hash + Objects.hashCode(this.nombre);
-        hash = 97 * hash + Objects.hashCode(this.correoElectronico);
-        hash = 97 * hash + Objects.hashCode(this.contraseña);
-        hash = 97 * hash + Objects.hashCode(this.fechaRegistro);
-        hash = 97 * hash + Objects.hashCode(this.tipoUsuario);
+        int hash = 5;
+        hash = 53 * hash + this.idUsuario;
+        hash = 53 * hash + Objects.hashCode(this.nombre);
+        hash = 53 * hash + Objects.hashCode(this.correoElectronico);
+        hash = 53 * hash + Objects.hashCode(this.contraseña);
+        hash = 53 * hash + Objects.hashCode(this.fechaNacimiento);
+        
+        hash = 53 * hash + Objects.hashCode(this.DNI);
         return hash;
     }
 
@@ -128,14 +148,17 @@ public class Usuario {
         if (!Objects.equals(this.contraseña, other.contraseña)) {
             return false;
         }
-        if (!Objects.equals(this.tipoUsuario, other.tipoUsuario)) {
+        
+        if (!Objects.equals(this.DNI, other.DNI)) {
             return false;
         }
-        if (!Objects.equals(this.fechaRegistro, other.fechaRegistro)) {
+        if (!Objects.equals(this.fechaNacimiento, other.fechaNacimiento)) {
             return false;
         }
         return true;
     }
+
+    
     
     
 }
