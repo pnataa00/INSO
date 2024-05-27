@@ -10,24 +10,22 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet library="css" name="default.css"/> 
         <h:outputStylesheet library="css" name="cssLayout.css"/>
-        
+        <f:event type="preRenderView" listener="#{plantillaController.verificarYMostrar()}"/>
         <title>Clases Particulares</title>
     </h:head>
 
     <h:body>
 
-        <div id="top">
+        <div id="top">           
             <ui:insert name="top">
-                <div>
-                    <p:sidebar widgetVar="sidebarLeft">
-                        <h3>Menú</h3>
-                        <div>
-                            <p:button value="Añadir Asignatura" rendered="#{plantillaController.esAdmin()}" styleClass="ui-button-flat ui-button-plain" style="width: 100%" outcome="/privado/admin/altaAsignatura.xhtml"/>
-                            
-                        </div>
-                    </p:sidebar>
-                    
-                </div>
+                
+                <p:menubar model="#{menuController.modelo}">
+                    <f:facet name="options">
+                        <h:form>
+                            <p:commandButton value="Cerrar Sesión" actionListener="#{menuController.destrurirSesionActual()}"/>
+                        </h:form>
+                    </f:facet>
+                </p:menubar>
             
             
             

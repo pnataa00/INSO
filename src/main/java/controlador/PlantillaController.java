@@ -30,67 +30,7 @@ public class PlantillaController implements Serializable{
         }
     }
     
-    public void verificarYMostrarAlumno(){
-        Usuario us=(Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
-        
-        if(us==null || us.getRol().getNombre().compareTo("Alumno")!=0){
-            try {
-                FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath()+"/publico/permisosinsuficientes.xhtml?faces-redirect=true");
-            } catch (IOException ex) {
-                Logger.getLogger(PlantillaController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
+   
     
     
-    public void verificarYMostrarProfesor(){
-        Usuario us=(Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
-        
-        if(us==null || us.getRol().getNombre().compareTo("Profesor")!=0){
-            try {
-                FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath()+"/publico/permisosinsuficientes.xhtml?faces-redirect=true");
-            } catch (IOException ex) {
-                Logger.getLogger(PlantillaController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
-    
-    public void verificarYMostrarAdmin(){
-        Usuario us=(Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
-        
-        if(us==null || us.getRol().getNombre().compareTo("Admin")!=0){
-            try {
-                FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath()+"/publico/permisosinsuficientes.xhtml?faces-redirect=true");
-            } catch (IOException ex) {
-                Logger.getLogger(PlantillaController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
-    
-    
-    public boolean esAlumno(){
-        Usuario us=(Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
-        return FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario") != null && us.getRol().getNombre().compareTo("Alumno")==0;
-    }
-    
-    public boolean esProfesor(){
-        Usuario us=(Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
-        return FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario") != null && us.getRol().getNombre().compareTo("Profesor")==0;
-    }
-    
-    public boolean esAdmin(){
-        Usuario us=(Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
-        return FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario") != null && us.getRol().getNombre().compareTo("Admin")==0;
-    }
-    
-    public void cerrarSesion(){
-        
-        try {
-            // Se destruye la sesion del usuario
-            FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath() + "/faces/index.xhtml");
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
 }

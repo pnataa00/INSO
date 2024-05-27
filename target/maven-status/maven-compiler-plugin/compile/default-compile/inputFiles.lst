@@ -7,6 +7,7 @@ C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\ClasesFacad
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\PagoFacade.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\modelo\Pago.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\AsignaturasFacade.java
+C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\modelo\Menu.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\HorarioFacade.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\ComentarioFacade.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\controlador\AsignaturaController.java
@@ -16,12 +17,15 @@ C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\controlador\Pla
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\AbstractFacade.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\RolFacadeLocal.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\AlumnoFacadeLocal.java
+C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\MenuFacade.java
+C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\controlador\MenuController.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\ClasesFacade.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\modelo\Alumno.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\modelo\Asignaturas.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\modelo\Comentario.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\UsuarioFacade.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\modelo\Profesor.java
+C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\MenuFacadeLocal.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\UsuarioFacadeLocal.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\AlumnoFacade.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\PagoFacadeLocal.java

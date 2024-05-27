@@ -32,7 +32,7 @@ public class Menu implements Serializable{
     private String nombre;
     
     @Column(name="Tipo")
-    private String tipo;
+    private char tipo;
         
     @JoinColumn(name="IdRol")
     @ManyToOne
@@ -61,11 +61,11 @@ public class Menu implements Serializable{
         this.nombre = nombre;
     }
 
-    public String getTipo() {
+    public char getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(char tipo) {
         this.tipo = tipo;
     }
 
