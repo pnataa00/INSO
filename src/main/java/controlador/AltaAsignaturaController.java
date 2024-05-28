@@ -9,6 +9,8 @@ import EJB.AsignaturasFacadeLocal;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 
 import javax.inject.Named;
@@ -21,7 +23,7 @@ import modelo.Asignaturas;
 
 @Named
 @ViewScoped
-public class AsignaturaController implements Serializable{
+public class AltaAsignaturaController implements Serializable{
     
     private Asignaturas asignatura;
     @EJB
@@ -35,6 +37,7 @@ public class AsignaturaController implements Serializable{
     
     public void insertarAsignatura(){
         asignaturaEJB.create(asignatura);
+        FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_INFO,"Asignatura añadida correctamente",""));
         
     }
 

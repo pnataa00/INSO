@@ -15,16 +15,16 @@
                     <h1>Asignaturas y horarios</h1>
                     <p:panelGrid columns="2" >
                         <p:outputLabel for="subject" value="Asignaturas"/>
-                        <p:selectManyButton value="#{profesorController.asignatura}">
-                            <f:selectItems value="#{profesorController.asignaturas}"/>
+                        <p:selectManyButton value="#{altaClaseController.asignatura}">
+                            <f:selectItems value="#{altaClaseController.asignaturas}"/>
                         </p:selectManyButton>
                         <p:outputLabel for="schedule" value="Horarios"/>
-                        <p:selectManyButton value="#{profesorController.horario}">
-                            <f:selectItems value="#{profesorController.horarios}"/>
+                        <p:selectManyButton value="#{altaClaseController.horario}">
+                            <f:selectItems value="#{altaClaseController.horarios}"/>
                         </p:selectManyButton>
                     </p:panelGrid>
                     <div>
-                        <p:commandButton value="Agregar" action="#{profesorController.gestionProfesor()}"/>
+                        <p:commandButton value="Agregar" action="#{altaClaseController.gestionProfesor()}"/>
                     </div>
                     
                 </h:form>

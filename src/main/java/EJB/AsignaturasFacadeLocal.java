@@ -30,4 +30,6 @@ public interface AsignaturasFacadeLocal {
 
     int count();
     
+    Asignaturas findByName(String name);
+    
 }

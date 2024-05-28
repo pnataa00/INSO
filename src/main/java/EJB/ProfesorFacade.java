@@ -5,10 +5,12 @@
  */
 package EJB;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import modelo.Profesor;
+import modelo.Usuario;
 
 /**
  *
@@ -27,6 +29,17 @@ public class ProfesorFacade extends AbstractFacade<Profesor> implements Profesor
 
     public ProfesorFacade() {
         super(Profesor.class);
+    }
+    
+    @Override
+    public Profesor finByUsuario(Usuario usuario){
+        List<Profesor> allProf=findAll();
+        for(int i=0; i<allProf.size();i++){
+            if(allProf.get(i).getUsuario().getIdUsuario()==(usuario.getIdUsuario())){
+                return allProf.get(i);
+            }
+        }
+        return null;
     }
     
 }

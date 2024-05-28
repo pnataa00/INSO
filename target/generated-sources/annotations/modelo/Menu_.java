@@ -6,7 +6,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import modelo.Menu;
 import modelo.Rol;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2024-05-27T13:07:15")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2024-05-28T21:56:59")
 @StaticMetamodel(Menu.class)
 public class Menu_ { 
 

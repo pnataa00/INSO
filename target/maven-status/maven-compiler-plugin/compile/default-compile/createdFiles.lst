@@ -1,6 +1,7 @@
 modelo\Pago.class
 modelo\Menu.class
 EJB\AbstractFacade.class
+controlador\AltaClaseController.class
 modelo\Asignaturas_.class
 EJB\AsignaturasFacade.class
 modelo\Usuario_.class
@@ -8,12 +9,11 @@ modelo\Clases.class
 modelo\Profesor_.class
 com\mycompany\proyecto\resources\JavaEE8Resource.class
 EJB\ClasesFacadeLocal.class
-controlador\AsignaturaController.class
+controlador\AltaUsuarioController.class
 EJB\HorarioFacadeLocal.class
 EJB\ComentarioFacadeLocal.class
 EJB\MenuFacade.class
 EJB\MenuFacadeLocal.class
-controlador\HorarioController.class
 EJB\RolFacadeLocal.class
 EJB\UsuarioFacade.class
 modelo\Profesor.class
@@ -27,10 +27,8 @@ EJB\PagoFacadeLocal.class
 EJB\RolFacade.class
 com\mycompany\proyecto\JAXRSConfiguration.class
 modelo\Horario.class
-controlador\UsuarioController.class
 EJB\HorarioFacade.class
 EJB\ComentarioFacade.class
-controlador\ProfesorController.class
 modelo\Rol_.class
 modelo\Clases_.class
 EJB\UsuarioFacadeLocal.class
@@ -41,10 +39,13 @@ modelo\Comentario.class
 controlador\PlantillaController.class
 EJB\ClasesFacade.class
 modelo\Alumno.class
+controlador\ConfigurarProfesorController.class
 controlador\IndexController.class
+controlador\AltaAsignaturaController.class
 modelo\Comentario_.class
 controlador\MenuController.class
 EJB\PagoFacade.class
+controlador\AltaHorarioController.class
 EJB\AlumnoFacade.class
 EJB\AsignaturasFacadeLocal.class
 EJB\AlumnoFacadeLocal.class

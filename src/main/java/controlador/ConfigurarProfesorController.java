@@ -7,53 +7,65 @@ package controlador;
 
 import EJB.AsignaturasFacadeLocal;
 import EJB.HorarioFacadeLocal;
+import EJB.ProfesorFacadeLocal;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import modelo.Asignaturas;
 import modelo.Horario;
 import modelo.Profesor;
+import modelo.Usuario;
 
 /**
  *
  * @author pablo
  */
+
 @Named
 @ViewScoped
-public class ProfesorController implements Serializable{
-    private Asignaturas asignatura;
+public class ConfigurarProfesorController implements Serializable{
+    private Profesor profesor;
     private List<Asignaturas> asignaturas;
-    private Horario horario;
     private List<Horario> horarios;
-    Profesor profesor;
+    
+    @EJB
+    private ProfesorFacadeLocal profesorEJB;
     
     @EJB
     private AsignaturasFacadeLocal asignaturaEJB;
     
-    @EJB 
+    @EJB
     private HorarioFacadeLocal horarioEJB;
     
     @PostConstruct
     public void init(){
         asignaturas=asignaturaEJB.findAll();
-        horarios=new ArrayList<>();
-        profesor=new Profesor();
+        Usuario usu=(Usuario)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+        if(usu!=null){
+            profesor=profesorEJB.finByUsuario(usu);
+        }
+        horarios=horarioEJB.findAll();
+        asignaturas=asignaturaEJB.findAll();
     }
-    public void gestionProfesor(){
-       profesor.setAsignaturas(asignaturas);
-       profesor.setHorarios(horarios);
+    
+    public void configurarProfesor(){
+        profesor.setAsignaturas(asignaturas);
+        profesor.setHorarios(horarios);
+        profesorEJB.edit(profesor);
+        
     }
 
-    public Asignaturas getAsignatura() {
-        return asignatura;
+    public Profesor getProfesor() {
+        return profesor;
     }
 
-    public void setAsignatura(Asignaturas asignatura) {
-        this.asignatura = asignatura;
+    public void setProfesor(Profesor profesor) {
+        this.profesor = profesor;
     }
 
     public List<Asignaturas> getAsignaturas() {
@@ -64,14 +76,6 @@ public class ProfesorController implements Serializable{
         this.asignaturas = asignaturas;
     }
 
-    public Horario getHorario() {
-        return horario;
-    }
-
-    public void setHorario(Horario horario) {
-        this.horario = horario;
-    }
-
     public List<Horario> getHorarios() {
         return horarios;
     }
@@ -80,12 +84,12 @@ public class ProfesorController implements Serializable{
         this.horarios = horarios;
     }
 
-    public Profesor getProfesor() {
-        return profesor;
+    public ProfesorFacadeLocal getProfesorEJB() {
+        return profesorEJB;
     }
 
-    public void setProfesor(Profesor profesor) {
-        this.profesor = profesor;
+    public void setProfesorEJB(ProfesorFacadeLocal profesorEJB) {
+        this.profesorEJB = profesorEJB;
     }
 
     public AsignaturasFacadeLocal getAsignaturaEJB() {
@@ -103,7 +107,6 @@ public class ProfesorController implements Serializable{
     public void setHorarioEJB(HorarioFacadeLocal horarioEJB) {
         this.horarioEJB = horarioEJB;
     }
-    
     
     
     

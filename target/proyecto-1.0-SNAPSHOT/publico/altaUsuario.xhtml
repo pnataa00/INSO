@@ -24,29 +24,29 @@
                             <p:panelGrid columns="3" id="panel" >
 
                                     <p:outputLabel for="name" value="Nombre: " />
-                                    <p:inputText id="name" required="true" value="#{usuarioController.usuario.nombre}" requiredMessage="Introduce tu nombre."/>
+                                    <p:inputText id="name" required="true" value="#{altaUsuarioController.usuario.nombre}" requiredMessage="Introduce tu nombre."/>
                                     <p:message for="name"/>
 
 
                                     <p:outputLabel for="password" value="Contraseña: " />
-                                    <p:password id="password" required="true" feedback="true" value="#{usuarioController.usuario.contraseña}" requiredMessage="Introduce una contraseña."/>
+                                    <p:password id="password" required="true" feedback="true" value="#{altaUsuarioController.usuario.contraseña}" requiredMessage="Introduce una contraseña."/>
                                     <p:message for="password"/>
 
                                     <p:outputLabel for="email" value="Correo Electrónico: "/>
-                                    <p:inputText id="email" required="true" value="#{usuarioController.usuario.correoElectronico}" requiredMessage="Introduce un correo electrónico."/>
+                                    <p:inputText id="email" required="true" value="#{altaUsuarioController.usuario.correoElectronico}" requiredMessage="Introduce un correo electrónico."/>
                                     <p:message for="email"/>
 
                                     <p:outputLabel for="birthdate" value="Fecha de Nacimiento: "/>
-                                    <p:calendar id="birthdate" locale="es"  required="true" value="#{usuarioController.usuario.fechaNacimiento}" requiredMessage="Introduce tu fecha de nacimiento."/>
+                                    <p:calendar id="birthdate" locale="es"  required="true" value="#{altaUsuarioController.usuario.fechaNacimiento}" requiredMessage="Introduce tu fecha de nacimiento."/>
                                     <p:message for="birthdate"/>
 
                                     <p:outputLabel for="dni" value="DNI:" />
-                                    <p:inputText id="dni" required="true" value="#{usuarioController.usuario.DNI}" requiredMessage="Introduce tu DNI."/>
+                                    <p:inputText id="dni" required="true" value="#{altaUsuarioController.usuario.DNI}" requiredMessage="Introduce tu DNI."/>
                                     <p:message for="dni"/>
 
                                     <p:outputLabel  for="rol" value="Rol" />
-                                    <p:selectOneMenu id="rol" value="#{usuarioController.rol}" required="true" requiredMessage="Introduce tu tipo de usuario" >
-                                        <f:selectItems value="#{usuarioController.roles}"/>
+                                    <p:selectOneMenu id="rol" value="#{altaUsuarioController.rol}" required="true" requiredMessage="Introduce tu tipo de usuario" >
+                                        <f:selectItems value="#{altaUsuarioController.roles}"/>
                                     </p:selectOneMenu>
                                     <p:message for="rol"/>
 
@@ -55,7 +55,7 @@
 
                         <div style=" justify-content:center; margin-top:20px;">
 
-                            <p:commandButton value="Registrarse" actionListener="#{usuarioController.insertarUsuario}" update=" msg,panel"  />
+                            <p:commandButton value="Registrarse" actionListener="#{altaUsuarioController.insertarUsuario}" update=" msg,panel"  />
                             <p:button value="Volver atrás" outcome="/index.xhtml"/>
                         </div>
 

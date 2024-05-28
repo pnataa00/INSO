@@ -10,16 +10,20 @@
         <ui:composition template="./../../WEB-INF/template/plantilla.xhtml">
 
             <ui:define name="content">
+                <p:messages id="info" severity="info"/>
                 <h:form>
-                    <p:outputLabel for="basic" value="Día" />
-                    <p:datePicker id="basic" value="#{horarioController.horario.dia}" locale="es" monthNavigator="true" pattern="yyyy-MMM-dd"/>
-                    
-                    <p:outputLabel for="timeonly" value="Hora Inicio" />
-                    <p:datePicker id="timeonly" value="#{horarioController.horario.horaInicio}"	timeOnly="true" pattern="HH:mm" />
-                    
-                    <p:outputLabel for="timeonly" value="Hora Fin" />
-                    <p:datePicker id="timeonly" value="#{horarioController.horario.horaFin}"	timeOnly="true" pattern="HH:mm" />
-                    
+                    <p:panelGrid id="panel" columns="3">
+                        <p:outputLabel for="enabledDates" value="Fecha" />
+                        <p:datePicker id="enabledDates" value="#{altaHorarioController.horario.fecha}" locale="es" required="true" requiredMessage="Introduce una fecha" monthNavigator="true" yearNavigator="true" showTime="true" showWeek="true"/>
+                        <p:message for="enabledDates"/>
+                        
+                        <p:outputLabel for="duracion" value="Duracion (máximo 4 horas)"/>
+                        <p:inputNumber value="#{altaHorarioController.horario.duracion}" id="duracion" required="true" requiredMessage="Introduce la duración" minValue="1" maxValue="4" decimalPlaces="0"/>
+                        <p:message for="duracion"/>
+                    </p:panelGrid>
+                    <p:panelGrid columns="1">
+                        <p:commandButton value="Insertar" actionListener="#{altaHorarioController.insertarHorario()}" update="panel,info"/>
+                    </p:panelGrid>
                 </h:form>
                 
             </ui:define>

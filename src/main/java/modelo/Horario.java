@@ -34,17 +34,13 @@ public class Horario implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idHorario;
     
-    @Column(name="Dia")
-    @Temporal(TemporalType.DATE)
-    private Date dia;
+    @Column(name="Fecha")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fecha;
     
-    @Column(name="HoraInicio")
-    @Temporal(TemporalType.TIME)
-    private Date horaInicio;
+    @Column(name="Duracion")
+    private int duracion;
     
-    @Column(name="HoraFin")
-    @Temporal(TemporalType.TIME)
-    private Date horaFin;
     
     @ManyToMany
     @JoinTable(
@@ -62,8 +58,6 @@ public class Horario implements Serializable{
         this.profesores = profesores;
     }
 
-    
-    
     public int getIdHorario() {
         return idHorario;
     }
@@ -72,39 +66,29 @@ public class Horario implements Serializable{
         this.idHorario = idHorario;
     }
 
-    public Date getDia() {
-        return dia;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setDia(Date dia) {
-        this.dia = dia;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
-    
-
-    public Date getHoraInicio() {
-        return horaInicio;
+    public int getDuracion() {
+        return duracion;
     }
 
-    public void setHoraInicio(Date horaInicio) {
-        this.horaInicio = horaInicio;
-    }
-
-    public Date getHoraFin() {
-        return horaFin;
-    }
-
-    public void setHoraFin(Date horaFin) {
-        this.horaFin = horaFin;
+    public void setDuracion(int duracion) {
+        this.duracion = duracion;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 17 * hash + this.idHorario;
-        hash = 17 * hash + Objects.hashCode(this.dia);
-        hash = 17 * hash + Objects.hashCode(this.horaInicio);
-        hash = 17 * hash + Objects.hashCode(this.horaFin);
+        hash = 67 * hash + this.idHorario;
+        hash = 67 * hash + Objects.hashCode(this.fecha);
+        hash = 67 * hash + this.duracion;
+        hash = 67 * hash + Objects.hashCode(this.profesores);
         return hash;
     }
 
@@ -123,17 +107,21 @@ public class Horario implements Serializable{
         if (this.idHorario != other.idHorario) {
             return false;
         }
-        if (!Objects.equals(this.dia, other.dia)) {
+        if (this.duracion != other.duracion) {
             return false;
         }
-        if (!Objects.equals(this.horaInicio, other.horaInicio)) {
+        if (!Objects.equals(this.fecha, other.fecha)) {
             return false;
         }
-        if (!Objects.equals(this.horaFin, other.horaFin)) {
+        if (!Objects.equals(this.profesores, other.profesores)) {
             return false;
         }
         return true;
     }
+
+    
+    
+    
     
     
     

@@ -10,8 +10,10 @@ C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\Asignaturas
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\modelo\Menu.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\HorarioFacade.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\ComentarioFacade.java
-C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\controlador\AsignaturaController.java
-C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\controlador\ProfesorController.java
+C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\controlador\AltaHorarioController.java
+C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\controlador\AltaUsuarioController.java
+C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\controlador\AltaClaseController.java
+C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\controlador\AltaAsignaturaController.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\modelo\Usuario.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\controlador\PlantillaController.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\AbstractFacade.java
@@ -20,6 +22,7 @@ C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\AlumnoFacad
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\MenuFacade.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\controlador\MenuController.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\ClasesFacade.java
+C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\controlador\ConfigurarProfesorController.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\modelo\Alumno.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\modelo\Asignaturas.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\modelo\Comentario.java
@@ -32,8 +35,6 @@ C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\PagoFacadeL
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\controlador\IndexController.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\ProfesorFacade.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\modelo\Clases.java
-C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\controlador\HorarioController.java
-C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\controlador\UsuarioController.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\modelo\Horario.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\AsignaturasFacadeLocal.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\ProfesorFacadeLocal.java

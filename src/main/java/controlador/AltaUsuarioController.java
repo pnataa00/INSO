@@ -32,7 +32,7 @@ import modelo.Usuario;
 
 @Named
 @ViewScoped
-public class UsuarioController implements Serializable{
+public class AltaUsuarioController implements Serializable{
     
     private Usuario usuario;
     private Profesor profesor;
@@ -168,7 +168,7 @@ public class UsuarioController implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final UsuarioController other = (UsuarioController) obj;
+        final AltaUsuarioController other = (AltaUsuarioController) obj;
         if (!Objects.equals(this.rol, other.rol)) {
             return false;
         }

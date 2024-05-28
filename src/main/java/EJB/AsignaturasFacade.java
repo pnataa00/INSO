@@ -5,6 +5,7 @@
  */
 package EJB;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +28,18 @@ public class AsignaturasFacade extends AbstractFacade<Asignaturas> implements As
 
     public AsignaturasFacade() {
         super(Asignaturas.class);
+    }
+    
+    @Override
+    public Asignaturas findByName(String name){
+        List<Asignaturas> allAsigs = findAll();
+        for(int i=0; i<allAsigs.size(); i++){
+            if(allAsigs.get(i).getNombre().equals(name)){
+                return allAsigs.get(i);
+            }
+        }
+        
+        return null;
     }
     
 }

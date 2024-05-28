@@ -8,6 +8,7 @@ package EJB;
 import java.util.List;
 import javax.ejb.Local;
 import modelo.Profesor;
+import modelo.Usuario;
 
 /**
  *
@@ -29,5 +30,7 @@ public interface ProfesorFacadeLocal {
     List<Profesor> findRange(int[] range);
 
     int count();
+    
+    Profesor finByUsuario(Usuario usuario);
     
 }
