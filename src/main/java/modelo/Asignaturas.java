@@ -6,7 +6,6 @@
 package modelo;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,8 +13,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -36,25 +35,7 @@ public class Asignaturas implements Serializable{
     
     @Column(name="Curso")
     private int curso;
-    
-    @ManyToMany
-    @JoinTable(
-        name = "asignatura_profesor",
-        joinColumns = @JoinColumn(name = "IdAsignatura"),
-        inverseJoinColumns = @JoinColumn(name = "IdProfesor")
-    )
-    private List<Profesor> profesores;
 
-    public List<Profesor> getProfesores() {
-        return profesores;
-    }
-
-    public void setProfesores(List<Profesor> profesores) {
-        this.profesores = profesores;
-    }
-
-    
-    
     public int getIdAsignatura() {
         return idAsignatura;
     }
@@ -81,10 +62,10 @@ public class Asignaturas implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + this.idAsignatura;
-        hash = 79 * hash + Objects.hashCode(this.nombre);
-        hash = 79 * hash + this.curso;
+        int hash = 5;
+        hash = 37 * hash + this.idAsignatura;
+        hash = 37 * hash + Objects.hashCode(this.nombre);
+        hash = 37 * hash + this.curso;
         return hash;
     }
 
@@ -111,6 +92,11 @@ public class Asignaturas implements Serializable{
         }
         return true;
     }
+    
+    
+
+   
+    
     
     
     

@@ -5,8 +5,7 @@
  */
 package controlador;
 
-import EJB.AlumnoFacadeLocal;
-import EJB.ProfesorFacadeLocal;
+
 import EJB.UsuarioFacadeLocal;
 import EJB.RolFacadeLocal;
 import java.io.IOException;
@@ -20,8 +19,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import modelo.Alumno;
-import modelo.Profesor;
+
 import modelo.Rol;
 import modelo.Usuario;
 
@@ -35,28 +33,20 @@ import modelo.Usuario;
 public class AltaUsuarioController implements Serializable{
     
     private Usuario usuario;
-    private Profesor profesor;
-    private Alumno alumno;
+    
     private String rol;
     private List<String> roles;
     
     @EJB
     private UsuarioFacadeLocal usuarioEJB;
-    
-    @EJB
-    private ProfesorFacadeLocal profesorEJB;
-    
-    @EJB
-    private AlumnoFacadeLocal alumnoEJB;
-    
+        
     @EJB
     private RolFacadeLocal rolEJB;
     
     @PostConstruct
     public void init(){
         usuario= new Usuario();
-        profesor=new Profesor();
-        alumno=new Alumno();
+        
         roles=new ArrayList<>();
         
         List<Rol> rolesBD = rolEJB.findAll();
@@ -102,14 +92,7 @@ public class AltaUsuarioController implements Serializable{
                 usuario.setRol(rolEJB.findByNombre(rol));
                 usuarioEJB.create(usuario);
                 
-                if (usuario.getRol().getNombre().equals("Alumno")) {
-                    alumno.setUsuario(usuario);                    
-                    alumnoEJB.create(alumno);
-                    
-                } else if (usuario.getRol().getNombre().equals("Profesor")) {
-                    profesor.setUsuario(usuario);
-                    profesorEJB.create(profesor);
-                }
+                
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario creado exitosamente.", null));
                 FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath()+"/");
             }else{
@@ -122,38 +105,54 @@ public class AltaUsuarioController implements Serializable{
         }
     }
 
-    public Profesor getProfesor() {
-        return profesor;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setProfesor(Profesor profesor) {
-        this.profesor = profesor;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public Alumno getAlumno() {
-        return alumno;
+    public String getRol() {
+        return rol;
     }
 
-    public void setAlumno(Alumno alumno) {
-        this.alumno = alumno;
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
-    public ProfesorFacadeLocal getProfesorEJB() {
-        return profesorEJB;
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
+
+    public UsuarioFacadeLocal getUsuarioEJB() {
+        return usuarioEJB;
+    }
+
+    public void setUsuarioEJB(UsuarioFacadeLocal usuarioEJB) {
+        this.usuarioEJB = usuarioEJB;
+    }
+
+    public RolFacadeLocal getRolEJB() {
+        return rolEJB;
+    }
+
+    public void setRolEJB(RolFacadeLocal rolEJB) {
+        this.rolEJB = rolEJB;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.usuario);
-        hash = 23 * hash + Objects.hashCode(this.profesor);
-        hash = 23 * hash + Objects.hashCode(this.alumno);
-        hash = 23 * hash + Objects.hashCode(this.rol);
-        hash = 23 * hash + Objects.hashCode(this.roles);
-        hash = 23 * hash + Objects.hashCode(this.usuarioEJB);
-        hash = 23 * hash + Objects.hashCode(this.profesorEJB);
-        hash = 23 * hash + Objects.hashCode(this.alumnoEJB);
-        hash = 23 * hash + Objects.hashCode(this.rolEJB);
+        hash = 79 * hash + Objects.hashCode(this.usuario);
+        hash = 79 * hash + Objects.hashCode(this.rol);
+        hash = 79 * hash + Objects.hashCode(this.roles);
+        hash = 79 * hash + Objects.hashCode(this.usuarioEJB);
+        hash = 79 * hash + Objects.hashCode(this.rolEJB);
         return hash;
     }
 
@@ -175,22 +174,10 @@ public class AltaUsuarioController implements Serializable{
         if (!Objects.equals(this.usuario, other.usuario)) {
             return false;
         }
-        if (!Objects.equals(this.profesor, other.profesor)) {
-            return false;
-        }
-        if (!Objects.equals(this.alumno, other.alumno)) {
-            return false;
-        }
         if (!Objects.equals(this.roles, other.roles)) {
             return false;
         }
         if (!Objects.equals(this.usuarioEJB, other.usuarioEJB)) {
-            return false;
-        }
-        if (!Objects.equals(this.profesorEJB, other.profesorEJB)) {
-            return false;
-        }
-        if (!Objects.equals(this.alumnoEJB, other.alumnoEJB)) {
             return false;
         }
         if (!Objects.equals(this.rolEJB, other.rolEJB)) {
@@ -199,61 +186,10 @@ public class AltaUsuarioController implements Serializable{
         return true;
     }
 
-    public String getRol() {
-        return rol;
-    }
-
-    public void setRol(String rol) {
-        this.rol = rol;
-    }
-
-    public List<String> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<String> roles) {
-        this.roles = roles;
-    }
-
-    public RolFacadeLocal getRolEJB() {
-        return rolEJB;
-    }
-
-    public void setRolEJB(RolFacadeLocal rolEJB) {
-        this.rolEJB = rolEJB;
-    }
     
+ 
+
     
-
-    public void setProfesorEJB(ProfesorFacadeLocal profesorEJB) {
-        this.profesorEJB = profesorEJB;
-    }
-
-    public AlumnoFacadeLocal getAlumnoEJB() {
-        return alumnoEJB;
-    }
-
-    public void setAlumnoEJB(AlumnoFacadeLocal alumnoEJB) {
-        this.alumnoEJB = alumnoEJB;
-    }
-    
-    
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public UsuarioFacadeLocal getUsuarioEJB() {
-        return usuarioEJB;
-    }
-
-    public void setUsuarioEJB(UsuarioFacadeLocal usuarioEJB) {
-        this.usuarioEJB = usuarioEJB;
-    }
     
     
     

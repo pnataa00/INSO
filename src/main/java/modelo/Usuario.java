@@ -7,6 +7,7 @@ package modelo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -48,6 +50,9 @@ public class Usuario implements Serializable{
     @ManyToOne
     private Rol rol;
     
+    @ManyToMany(mappedBy = "usuarios")
+    private List<Clases> clases;
+    
     @Column(name="DNI")
     private String DNI;
 
@@ -65,6 +70,14 @@ public class Usuario implements Serializable{
 
     public void setRol(Rol rol) {
         this.rol = rol;
+    }
+
+    public List<Clases> getClases() {
+        return clases;
+    }
+
+    public void setClases(List<Clases> clases) {
+        this.clases = clases;
     }
 
     

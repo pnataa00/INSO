@@ -33,20 +33,18 @@ public class Comentario implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idComentario;
     
-    @JoinColumn(name="IdProfesor")
-    @ManyToOne
-    private Profesor profesor;
-    
-    @JoinColumn(name="IdAlumno")
-    @ManyToOne
-    private Alumno alumno;
-    
     @JoinColumn(name="IdClase")
     @ManyToOne
     private Clases clase;
     
+    @JoinColumn(name="IdUsuario")
+    @ManyToOne
+    private Usuario usuario;
+    
+    
+    
     @Column(name="Fecha")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
     
     @Column(name="Comentario")
@@ -63,28 +61,20 @@ public class Comentario implements Serializable{
         this.idComentario = idComentario;
     }
 
-    public Profesor getProfesor() {
-        return profesor;
-    }
-
-    public void setProfesor(Profesor profesor) {
-        this.profesor = profesor;
-    }
-
-    public Alumno getAlumno() {
-        return alumno;
-    }
-
-    public void setAlumno(Alumno alumno) {
-        this.alumno = alumno;
-    }
-
     public Clases getClase() {
         return clase;
     }
 
     public void setClase(Clases clase) {
         this.clase = clase;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public Date getFecha() {
@@ -113,14 +103,13 @@ public class Comentario implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 23 * hash + this.idComentario;
-        hash = 23 * hash + Objects.hashCode(this.profesor);
-        hash = 23 * hash + Objects.hashCode(this.alumno);
-        hash = 23 * hash + Objects.hashCode(this.clase);
-        hash = 23 * hash + Objects.hashCode(this.fecha);
-        hash = 23 * hash + Objects.hashCode(this.comentario);
-        hash = 23 * hash + this.puntuacion;
+        int hash = 5;
+        hash = 79 * hash + this.idComentario;
+        hash = 79 * hash + Objects.hashCode(this.clase);
+        hash = 79 * hash + Objects.hashCode(this.usuario);
+        hash = 79 * hash + Objects.hashCode(this.fecha);
+        hash = 79 * hash + Objects.hashCode(this.comentario);
+        hash = 79 * hash + this.puntuacion;
         return hash;
     }
 
@@ -145,13 +134,10 @@ public class Comentario implements Serializable{
         if (!Objects.equals(this.comentario, other.comentario)) {
             return false;
         }
-        if (!Objects.equals(this.profesor, other.profesor)) {
-            return false;
-        }
-        if (!Objects.equals(this.alumno, other.alumno)) {
-            return false;
-        }
         if (!Objects.equals(this.clase, other.clase)) {
+            return false;
+        }
+        if (!Objects.equals(this.usuario, other.usuario)) {
             return false;
         }
         if (!Objects.equals(this.fecha, other.fecha)) {
@@ -159,6 +145,8 @@ public class Comentario implements Serializable{
         }
         return true;
     }
+
+    
     
     
     

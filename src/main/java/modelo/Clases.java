@@ -6,14 +6,22 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -28,18 +36,61 @@ public class Clases implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idClase;
     
-    @JoinColumn(name="IdAlumno")
-    @ManyToOne
-    private Alumno alumno;
+    @Column(name="Fecha")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fecha;
     
-    @JoinColumn(name="IdProfesor")
-    @ManyToOne
-    private Profesor profesor;
+    @Column(name="Duracion")
+    private int duracion;
     
-    @JoinColumn(name="IdHorario")
+    @JoinColumn(name="IdAsignatura")
     @ManyToOne
-    private Horario horario;
+    private Asignaturas asignatura;
+    
+    @Column(name="Precio")
+    private int precio;
+    
+    @Column(name="Pagado")
+    private String pagado;
+    
+    
+    @ManyToMany
+    @JoinTable(
+            name="clases_usuarios",
+            joinColumns= @JoinColumn(name="IdClase"),
+            inverseJoinColumns = @JoinColumn(name = "IdUsuario")
+    )
+    private List<Usuario> usuarios;
 
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    public int getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(int precio) {
+        this.precio = precio;
+    }
+
+    public String getPagado() {
+        return pagado;
+    }
+
+    public void setPagado(String pagado) {
+        this.pagado = pagado;
+    }
+
+    
+
+    
+    
+    
     public int getIdClase() {
         return idClase;
     }
@@ -48,37 +99,40 @@ public class Clases implements Serializable {
         this.idClase = idClase;
     }
 
-    public Alumno getAlumno() {
-        return alumno;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setAlumno(Alumno alumno) {
-        this.alumno = alumno;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
-    public Profesor getProfesor() {
-        return profesor;
+    public int getDuracion() {
+        return duracion;
     }
 
-    public void setProfesor(Profesor profesor) {
-        this.profesor = profesor;
+    public void setDuracion(int duracion) {
+        this.duracion = duracion;
     }
 
-    public Horario getHorario() {
-        return horario;
+    public Asignaturas getAsignatura() {
+        return asignatura;
     }
 
-    public void setHorario(Horario horario) {
-        this.horario = horario;
+    public void setAsignatura(Asignaturas asignatura) {
+        this.asignatura = asignatura;
     }
 
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 37 * hash + this.idClase;
-        hash = 37 * hash + Objects.hashCode(this.alumno);
-        hash = 37 * hash + Objects.hashCode(this.profesor);
-        hash = 37 * hash + Objects.hashCode(this.horario);
+        hash = 89 * hash + this.idClase;
+        hash = 89 * hash + Objects.hashCode(this.fecha);
+        hash = 89 * hash + this.duracion;
+        hash = 89 * hash + Objects.hashCode(this.asignatura);
+        hash = 89 * hash + this.precio;
+        hash = 89 * hash + Objects.hashCode(this.pagado);
+        hash = 89 * hash + Objects.hashCode(this.usuarios);
         return hash;
     }
 
@@ -97,17 +151,32 @@ public class Clases implements Serializable {
         if (this.idClase != other.idClase) {
             return false;
         }
-        if (!Objects.equals(this.alumno, other.alumno)) {
+        if (this.duracion != other.duracion) {
             return false;
         }
-        if (!Objects.equals(this.profesor, other.profesor)) {
+        if (this.precio != other.precio) {
             return false;
         }
-        if (!Objects.equals(this.horario, other.horario)) {
+        if (!Objects.equals(this.pagado, other.pagado)) {
+            return false;
+        }
+        if (!Objects.equals(this.fecha, other.fecha)) {
+            return false;
+        }
+        if (!Objects.equals(this.asignatura, other.asignatura)) {
+            return false;
+        }
+        if (!Objects.equals(this.usuarios, other.usuarios)) {
             return false;
         }
         return true;
     }
+
+    
+
+    
+    
+
     
     
     

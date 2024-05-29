@@ -1,19 +1,23 @@
 package modelo;
 
+import java.util.Date;
 import javax.annotation.Generated;
+import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
-import modelo.Alumno;
-import modelo.Horario;
-import modelo.Profesor;
+import modelo.Asignaturas;
+import modelo.Usuario;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2024-05-28T21:56:59")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2024-05-29T13:48:56")
 @StaticMetamodel(Clases.class)
 public class Clases_ { 
 
-    public static volatile SingularAttribute<Clases, Horario> horario;
+    public static volatile SingularAttribute<Clases, Date> fecha;
+    public static volatile SingularAttribute<Clases, Asignaturas> asignatura;
+    public static volatile SingularAttribute<Clases, Integer> precio;
+    public static volatile SingularAttribute<Clases, Boolean> estado;
+    public static volatile SingularAttribute<Clases, Integer> duracion;
     public static volatile SingularAttribute<Clases, Integer> idClase;
-    public static volatile SingularAttribute<Clases, Alumno> alumno;
-    public static volatile SingularAttribute<Clases, Profesor> profesor;
+    public static volatile ListAttribute<Clases, Usuario> usuarios;
 
 }
