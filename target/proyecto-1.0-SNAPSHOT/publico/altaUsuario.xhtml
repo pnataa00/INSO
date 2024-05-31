@@ -8,9 +8,9 @@
     
     <h:head>
         <title>Registro</title>
-        <h:outputScript library="js" name="spanishcalendar.js"/>
+        
     </h:head>
-    
+    <h:outputScript library="js" name="spanishcalendar.js"/>
     <body>
             
         
@@ -20,42 +20,69 @@
 
 
                         <p:messages id="msg" severity="error"/>
-                        <p:fieldset legend="Registro">
-                            <p:panelGrid columns="3" id="panel" >
-
+                        <p:panelGrid id="grid" columns="2" 
+                             layout="grid"
+                             styleClass="ui-panelgrid-blank ui-fluid"
+                             style="border:0px none; background-color:transparent;">
+                            <p:fieldset legend="Datos personales">
+                                <p:panelGrid columns="3" id="panel1">
                                     <p:outputLabel for="name" value="Nombre: " />
-                                    <p:inputText id="name" required="true" value="#{altaUsuarioController.usuario.nombre}" requiredMessage="Introduce tu nombre."/>
+                                    <p:inputText id="name" required="true" value="#{altaUsuarioController.persona.nombre}" requiredMessage="Introduce tu nombre."/>
                                     <p:message for="name"/>
+                                    
+                                    <p:outputLabel for="apellido" value="Apellido: "/>
+                                    <p:inputText id="apellido" required="true" value="#{altaUsuarioController.persona.apellido}" requiredMessage="Introduce tu apellido"/>
+                                    <p:message for="apellido"/>
+                                    
+                                    <p:outputLabel for="sex" value="Sexo:"/>
+                                    <p:selectOneButton id="sex" value="#{altaUsuarioController.persona.sexo}" required="true" requiredMessage="Introduce tu sexo">
+                                        <f:selectItem itemLabel="Masculino" itemValue='M'/>
+                                        <f:selectItem itemLabel="Femenino" itemValue='F'/>
+                                    </p:selectOneButton>
+                                    <p:message for="sex"/>
+                                    
+                                    <p:outputLabel for="date" value="Fecha de nacimiento:"/>
+                                    <p:calendar required="true" id="date" requiredMessage="Introduce tu fecha de nacimiento" showOn="button" locale="es" value="#{altaUsuarioController.persona.fechaNacimiento}"/>
+                                    <p:message for="date"/>
+                                </p:panelGrid>
+                                
+                            </p:fieldset>
+                        
+                        
+                        
+                        
+                        
+                            <p:fieldset legend="Datos de acceso">
+                                <p:panelGrid columns="3" id="panel" >
+
+                                        <p:outputLabel for="userName" value="Nombre de usuario: " />
+                                        <p:inputText id="userName" required="true" value="#{altaUsuarioController.usuario.userName}" requiredMessage="Introduce tu nombre de usuario."/>
+                                        <p:message for="userName"/>
 
 
-                                    <p:outputLabel for="password" value="Contraseña: " />
-                                    <p:password id="password" required="true" feedback="true" value="#{altaUsuarioController.usuario.contraseña}" requiredMessage="Introduce una contraseña."/>
-                                    <p:message for="password"/>
+                                        <p:outputLabel for="password" value="Contraseña: " />
+                                        <p:password id="password" required="true" feedback="true" value="#{altaUsuarioController.usuario.contraseña}" requiredMessage="Introduce una contraseña."/>
+                                        <p:message for="password"/>
 
-                                    <p:outputLabel for="email" value="Correo Electrónico: "/>
-                                    <p:inputText id="email" required="true" value="#{altaUsuarioController.usuario.correoElectronico}" requiredMessage="Introduce un correo electrónico."/>
-                                    <p:message for="email"/>
+                                        <p:outputLabel for="email" value="Correo Electrónico: "/>
+                                        <p:inputText id="email" required="true" value="#{altaUsuarioController.usuario.correoElectronico}" requiredMessage="Introduce un correo electrónico."/>
+                                        <p:message for="email"/>
 
-                                    <p:outputLabel for="birthdate" value="Fecha de Nacimiento: "/>
-                                    <p:calendar id="birthdate" locale="es"  required="true" value="#{altaUsuarioController.usuario.fechaNacimiento}" requiredMessage="Introduce tu fecha de nacimiento."/>
-                                    <p:message for="birthdate"/>
+                                        
 
-                                    <p:outputLabel for="dni" value="DNI:" />
-                                    <p:inputText id="dni" required="true" value="#{altaUsuarioController.usuario.DNI}" requiredMessage="Introduce tu DNI."/>
-                                    <p:message for="dni"/>
+                                        <p:outputLabel  for="rol" value="Rol" />
+                                        <p:selectOneMenu id="rol" value="#{altaUsuarioController.rol}" required="true" requiredMessage="Introduce tu tipo de usuario" >
+                                            <f:selectItems value="#{altaUsuarioController.roles}"/>
+                                        </p:selectOneMenu>
+                                        <p:message for="rol"/>
 
-                                    <p:outputLabel  for="rol" value="Rol" />
-                                    <p:selectOneMenu id="rol" value="#{altaUsuarioController.rol}" required="true" requiredMessage="Introduce tu tipo de usuario" >
-                                        <f:selectItems value="#{altaUsuarioController.roles}"/>
-                                    </p:selectOneMenu>
-                                    <p:message for="rol"/>
-
-                            </p:panelGrid>
-                        </p:fieldset>
+                                </p:panelGrid>
+                            </p:fieldset>
+                        </p:panelGrid>
 
                         <div style=" justify-content:center; margin-top:20px;">
 
-                            <p:commandButton value="Registrarse" actionListener="#{altaUsuarioController.insertarUsuario}" update=" msg,panel"  />
+                            <p:commandButton value="Registrarse" actionListener="#{altaUsuarioController.insertarUsuario}" update=" msg,panel, panel1"  />
                             <p:button value="Volver atrás" outcome="/index.xhtml"/>
                         </div>
 

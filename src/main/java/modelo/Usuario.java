@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,6 +18,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -33,8 +36,8 @@ public class Usuario implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUsuario;
     
-    @Column(name="Nombre")
-    private String nombre;
+    @Column(name="UserName")
+    private String userName;
     
     @Column(name="CorreoElectronico")
     private String correoElectronico;
@@ -42,26 +45,68 @@ public class Usuario implements Serializable{
     @Column(name="Contraseña")
     private String contraseña;
     
-    @Column(name="FechaNacimiento")
-    @Temporal(TemporalType.DATE)
-    private Date fechaNacimiento;
+    @Column(name="UltimaConexion")
+    @Temporal(TemporalType.TIME)
+    private Date ultimaConexion;
+    
+    @JoinColumn(name="idPersona")
+    @OneToOne(cascade={CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REMOVE})
+    private Persona persona;
     
     @JoinColumn(name="idRol")
     @ManyToOne
     private Rol rol;
-    
-    @ManyToMany(mappedBy = "usuarios")
-    private List<Clases> clases;
-    
-    @Column(name="DNI")
-    private String DNI;
 
-    public String getDNI() {
-        return DNI;
+
+    @ManyToMany(mappedBy ="usuarios")
+    private List<Clases> clases;
+
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setDNI(String DNI) {
-        this.DNI = DNI;
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getCorreoElectronico() {
+        return correoElectronico;
+    }
+
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
+    }
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+
+    public Date getUltimaConexion() {
+        return ultimaConexion;
+    }
+
+    public void setUltimaConexion(Date ultimaConexion) {
+        this.ultimaConexion = ultimaConexion;
+    }
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
 
     public Rol getRol() {
@@ -81,96 +126,18 @@ public class Usuario implements Serializable{
     }
 
     
-    
-    public int getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getCorreoElectronico() {
-        return correoElectronico;
-    }
-
-    public void setCorreoElectronico(String correoElectronico) {
-        this.correoElectronico = correoElectronico;
-    }
-
-    public String getContraseña() {
-        return contraseña;
-    }
-
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
-    }
-
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
 
     
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 53 * hash + this.idUsuario;
-        hash = 53 * hash + Objects.hashCode(this.nombre);
-        hash = 53 * hash + Objects.hashCode(this.correoElectronico);
-        hash = 53 * hash + Objects.hashCode(this.contraseña);
-        hash = 53 * hash + Objects.hashCode(this.fechaNacimiento);
-        
-        hash = 53 * hash + Objects.hashCode(this.DNI);
-        return hash;
-    }
+    
+    
+    
+    
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Usuario other = (Usuario) obj;
-        if (this.idUsuario != other.idUsuario) {
-            return false;
-        }
-        if (!Objects.equals(this.nombre, other.nombre)) {
-            return false;
-        }
-        if (!Objects.equals(this.correoElectronico, other.correoElectronico)) {
-            return false;
-        }
-        if (!Objects.equals(this.contraseña, other.contraseña)) {
-            return false;
-        }
-        
-        if (!Objects.equals(this.DNI, other.DNI)) {
-            return false;
-        }
-        if (!Objects.equals(this.fechaNacimiento, other.fechaNacimiento)) {
-            return false;
-        }
-        return true;
-    }
+    
 
+    
+    
     
     
     

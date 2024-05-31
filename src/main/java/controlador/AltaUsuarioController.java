@@ -19,6 +19,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import modelo.Persona;
 
 import modelo.Rol;
 import modelo.Usuario;
@@ -33,7 +34,7 @@ import modelo.Usuario;
 public class AltaUsuarioController implements Serializable{
     
     private Usuario usuario;
-    
+    private Persona persona;
     private String rol;
     private List<String> roles;
     
@@ -46,7 +47,7 @@ public class AltaUsuarioController implements Serializable{
     @PostConstruct
     public void init(){
         usuario= new Usuario();
-        
+        persona=new Persona();
         roles=new ArrayList<>();
         
         List<Rol> rolesBD = rolEJB.findAll();
@@ -56,29 +57,7 @@ public class AltaUsuarioController implements Serializable{
     }
     
     
-    //Método para comprobar que el DNI sea válido
-    public boolean validarDNI(String dni) {
-     
-        if (dni.length() != 9) {
-            return false;
-        }
-
-        String numeros = dni.substring(0, 8);
-        try {
-            Integer.parseInt(numeros);
-        } catch (NumberFormatException e) {
-            return false;
-        }
-
-        char letra = dni.charAt(8);
-        String letras = "TRWAGMYFPDXBNJZSQVHLCKE";
-        int indice = Integer.parseInt(numeros) % 23;
-        if (letra != letras.charAt(indice)) {
-            return false;
-        }
-
-        return true;
-    }
+    
     
     
     public void volverAtras() throws IOException{
@@ -88,20 +67,18 @@ public class AltaUsuarioController implements Serializable{
     
     public void insertarUsuario(){
         try{
-            if(validarDNI(usuario.getDNI())){
-                usuario.setRol(rolEJB.findByNombre(rol));
-                usuarioEJB.create(usuario);
-                
-                
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario creado exitosamente.", null));
-                FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath()+"/");
-            }else{
-                if(!validarDNI(usuario.getDNI())){
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "DNI no valido.", null));
-                }
-            }
-        }catch (Exception e){
             
+            usuario.setRol(rolEJB.findByNombre(rol));
+            usuario.setPersona(persona);
+            usuarioEJB.create(usuario);
+                
+                
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario creado exitosamente.", null));
+            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getApplicationContextPath()+"/");
+            
+        }catch (Exception e){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Error al registrar", "Error al registrar el usuario"));
+            System.out.println("Error al insertar el usuario "+e.getMessage());
         }
     }
 
@@ -111,6 +88,14 @@ public class AltaUsuarioController implements Serializable{
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
 
     public String getRol() {
@@ -148,11 +133,12 @@ public class AltaUsuarioController implements Serializable{
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.usuario);
-        hash = 79 * hash + Objects.hashCode(this.rol);
-        hash = 79 * hash + Objects.hashCode(this.roles);
-        hash = 79 * hash + Objects.hashCode(this.usuarioEJB);
-        hash = 79 * hash + Objects.hashCode(this.rolEJB);
+        hash = 67 * hash + Objects.hashCode(this.usuario);
+        hash = 67 * hash + Objects.hashCode(this.persona);
+        hash = 67 * hash + Objects.hashCode(this.rol);
+        hash = 67 * hash + Objects.hashCode(this.roles);
+        hash = 67 * hash + Objects.hashCode(this.usuarioEJB);
+        hash = 67 * hash + Objects.hashCode(this.rolEJB);
         return hash;
     }
 
@@ -174,6 +160,9 @@ public class AltaUsuarioController implements Serializable{
         if (!Objects.equals(this.usuario, other.usuario)) {
             return false;
         }
+        if (!Objects.equals(this.persona, other.persona)) {
+            return false;
+        }
         if (!Objects.equals(this.roles, other.roles)) {
             return false;
         }
@@ -185,6 +174,8 @@ public class AltaUsuarioController implements Serializable{
         }
         return true;
     }
+
+    
 
     
  

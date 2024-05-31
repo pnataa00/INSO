@@ -15,11 +15,11 @@
                     <p:messages id="info" severity="info"/>
                     <h:form>
                         <p:panelGrid id="panel" columns="3">
-                            <p:outputLabel value="introduzca el nombre de la asignatura" for="asignatura"/>
+                            <p:outputLabel value="Introduce el nombre de la asignatura" for="asignatura"/>
                             <p:inputText value="#{altaAsignaturaController.asignatura.nombre}" required="true" id="asignatura" requiredMessage="Introduce una asignatura"/>
                             <p:message for="panel"/>
                             
-                            <h:outputLabel value="introduce el curso" for="curso"/>
+                            <h:outputLabel value="Introduce el curso" for="curso"/>
                             <h:selectOneMenu id="curso"  required="true" value="#{altaAsignaturaController.asignatura.curso}"  label="curso" requiredMessage="Introduce un curso">
 
                                 <f:selectItem itemLabel="1" itemValue="1"/>

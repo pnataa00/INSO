@@ -10,7 +10,10 @@ import EJB.ClasesFacadeLocal;
 import EJB.UsuarioFacadeLocal;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -72,13 +75,23 @@ public class AltaClaseController implements Serializable{
         clase.setUsuarios(usuarios);
         clase.getUsuarios().add(usuario);
         usuario.getClases().add(clase);
-        claseEJB.create(this.clase);
-        usuarioEJB.edit(usuario);
-        if(clase.getDuracion()<=4){
-            listaClases=usuario.getClases();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Clase creada correctamente.", null));
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        Date today = cal.getTime();
+        if(clase.getFecha().after(today)){
+            if(clase.getDuracion()<=4){
+                claseEJB.create(this.clase);
+                usuarioEJB.edit(usuario);
+                listaClases=usuario.getClases();
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Clase creada correctamente.", null));
+            }else{
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Clase no creada, la duración debe ser menor de 4 horas.", null));
+            }
         }else{
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Clase no creada, la duración debe ser menor de 4 horas.", null));
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Clase no creada, la fecha debe ser posterior a hoy.", null));   
         }
         
         
@@ -147,6 +160,8 @@ public class AltaClaseController implements Serializable{
     public void setUsuarioEJB(UsuarioFacadeLocal usuarioEJB) {
         this.usuarioEJB = usuarioEJB;
     }
+
+    
     
     
 

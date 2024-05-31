@@ -60,38 +60,7 @@ public class Asignaturas implements Serializable{
         this.curso = curso;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 37 * hash + this.idAsignatura;
-        hash = 37 * hash + Objects.hashCode(this.nombre);
-        hash = 37 * hash + this.curso;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Asignaturas other = (Asignaturas) obj;
-        if (this.idAsignatura != other.idAsignatura) {
-            return false;
-        }
-        if (this.curso != other.curso) {
-            return false;
-        }
-        if (!Objects.equals(this.nombre, other.nombre)) {
-            return false;
-        }
-        return true;
-    }
+    
     
     
 

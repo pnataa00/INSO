@@ -53,6 +53,15 @@ public class Clases implements Serializable {
     @Column(name="Pagado")
     private String pagado;
     
+    @Column(name="ComentarioProfesor")
+    private String comentarioProfesor;
+    
+    @Column(name="ComentarioAlumno")
+    private String comentarioAlumno;
+    
+    @Column(name="Valoracion")
+    private int valoracion;
+    
     
     @ManyToMany
     @JoinTable(
@@ -62,35 +71,6 @@ public class Clases implements Serializable {
     )
     private List<Usuario> usuarios;
 
-    public List<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
-    }
-
-    public int getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(int precio) {
-        this.precio = precio;
-    }
-
-    public String getPagado() {
-        return pagado;
-    }
-
-    public void setPagado(String pagado) {
-        this.pagado = pagado;
-    }
-
-    
-
-    
-    
-    
     public int getIdClase() {
         return idClase;
     }
@@ -123,54 +103,79 @@ public class Clases implements Serializable {
         this.asignatura = asignatura;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 89 * hash + this.idClase;
-        hash = 89 * hash + Objects.hashCode(this.fecha);
-        hash = 89 * hash + this.duracion;
-        hash = 89 * hash + Objects.hashCode(this.asignatura);
-        hash = 89 * hash + this.precio;
-        hash = 89 * hash + Objects.hashCode(this.pagado);
-        hash = 89 * hash + Objects.hashCode(this.usuarios);
-        return hash;
+    public int getPrecio() {
+        return precio;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Clases other = (Clases) obj;
-        if (this.idClase != other.idClase) {
-            return false;
-        }
-        if (this.duracion != other.duracion) {
-            return false;
-        }
-        if (this.precio != other.precio) {
-            return false;
-        }
-        if (!Objects.equals(this.pagado, other.pagado)) {
-            return false;
-        }
-        if (!Objects.equals(this.fecha, other.fecha)) {
-            return false;
-        }
-        if (!Objects.equals(this.asignatura, other.asignatura)) {
-            return false;
-        }
-        if (!Objects.equals(this.usuarios, other.usuarios)) {
-            return false;
-        }
-        return true;
+    public void setPrecio(int precio) {
+        this.precio = precio;
     }
+
+    public String getPagado() {
+        return pagado;
+    }
+
+    public void setPagado(String pagado) {
+        this.pagado = pagado;
+    }
+
+    public String getComentarioProfesor() {
+        return comentarioProfesor;
+    }
+
+    public void setComentarioProfesor(String comentarioProfesor) {
+        this.comentarioProfesor = comentarioProfesor;
+    }
+
+    public String getComentarioAlumno() {
+        return comentarioAlumno;
+    }
+
+    public void setComentarioAlumno(String comentarioAlumno) {
+        this.comentarioAlumno = comentarioAlumno;
+    }
+
+    public int getValoracion() {
+        return valoracion;
+    }
+
+    public void setValoracion(int valoracion) {
+        this.valoracion = valoracion;
+    }
+
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+    
+    public String getComentariosFormattedProfesor() {
+        if (this.getComentarioProfesor() != null) {
+            return this.getComentarioProfesor().replace("||", "<br/>");
+        }
+        return "";
+    }
+    
+    public String getComentariosFormattedAlumno() {
+        if (this.getComentarioAlumno() != null) {
+            return this.getComentarioAlumno().replace("||", "<br/>");
+        }
+        return "";
+    }
+
+    
+
+    
+    
+    
+    
+
+    
+    
+
+    
 
     
 
