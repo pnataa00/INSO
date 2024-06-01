@@ -8,11 +8,12 @@ C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\ClasesFacad
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\AsignaturasFacade.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\PersonaFacadeLocal.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\controlador\ListarClasesController.java
+C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\controlador\EditarEliminarUsuarioController.java
+C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\controlador\EliminarClase.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\modelo\Menu.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\PersonaFacade.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\controlador\AltaUsuarioController.java
-C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\controlador\AltaClaseController.java
-C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\controlador\AltaAsignaturaController.java
+C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\controlador\AltaBajaModificacionAsignaturaController.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\modelo\Usuario.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\controlador\PlantillaController.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\AbstractFacade.java
@@ -23,6 +24,7 @@ C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\ClasesFacad
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\modelo\Asignaturas.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\UsuarioFacade.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\MenuFacadeLocal.java
+C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\controlador\ClaseProfesorController.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\EJB\UsuarioFacadeLocal.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\controlador\IndexController.java
 C:\Users\pablo\Documents\NetBeansProjects\proyecto\src\main\java\modelo\Clases.java

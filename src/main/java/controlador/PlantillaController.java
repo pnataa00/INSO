@@ -31,6 +31,9 @@ public class PlantillaController implements Serializable{
     }
     
    
-    
+    public void inicio() throws IOException{
+        String url="/proyecto/faces/privado/principal.xhtml";
+        FacesContext.getCurrentInstance().getExternalContext().redirect(url);
+    }
     
 }

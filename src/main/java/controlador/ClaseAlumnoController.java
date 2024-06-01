@@ -33,7 +33,7 @@ public class ClaseAlumnoController implements Serializable{
     private Usuario user;
     private String accion;
     private String comentario;
-    private int valoracion;
+    private String valoracion;
     private Persona persona;
     
     
@@ -148,11 +148,11 @@ public class ClaseAlumnoController implements Serializable{
         this.comentario = comentario;
     }
 
-    public int getValoracion() {
+    public String getValoracion() {
         return valoracion;
     }
 
-    public void setValoracion(int valoracion) {
+    public void setValoracion(String valoracion) {
         this.valoracion = valoracion;
     }
 

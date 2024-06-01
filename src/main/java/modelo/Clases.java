@@ -60,7 +60,7 @@ public class Clases implements Serializable {
     private String comentarioAlumno;
     
     @Column(name="Valoracion")
-    private int valoracion;
+    private String valoracion;
     
     
     @ManyToMany
@@ -135,11 +135,11 @@ public class Clases implements Serializable {
         this.comentarioAlumno = comentarioAlumno;
     }
 
-    public int getValoracion() {
+    public String getValoracion() {
         return valoracion;
     }
 
-    public void setValoracion(int valoracion) {
+    public void setValoracion(String valoracion) {
         this.valoracion = valoracion;
     }
 

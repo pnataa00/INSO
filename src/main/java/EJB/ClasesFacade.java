@@ -5,9 +5,11 @@
  */
 package EJB;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import modelo.Asignaturas;
 import modelo.Clases;
 
 /**
@@ -29,4 +31,14 @@ public class ClasesFacade extends AbstractFacade<Clases> implements ClasesFacade
         super(Clases.class);
     }
     
+    @Override
+    public List<Clases> findByAsignatura(Asignaturas asignatura){
+        List<Clases> clases=findAll();
+        for(Clases cl : clases){
+            if(cl.getAsignatura().equals(asignatura)){
+                clases.add(cl);
+            }
+        }
+        return clases;
+    }
 }

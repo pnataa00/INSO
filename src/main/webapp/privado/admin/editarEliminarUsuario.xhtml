@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        <h:outputScript library="js" name="spanishcalendar.js"/>
+        <ui:composition template="./../../WEB-INF/template/plantilla.xhtml">
+
+            <ui:define name="content">
+                <p:messages id="msg" severity="info">
+                    <p:autoUpdate/>
+                </p:messages>
+                <h:form id="principal">
+                    <p:dataTable id="tablaUsuarios" var="usuario" value="#{editarEliminarUsuarioController.usuarios}" rows="10"
+                                 paginator="true" paginatorPosition="both"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                 rowsPerPageTemplate="5,10,{ShowAll|'All'}">
+                    
+                        
+                        <p:column headerText="Username">
+                            <h:outputText value="#{usuario.userName}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Nombre completo">
+                            <h:outputText value="#{usuario.persona.nombre} #{usuario.persona.apellido}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Rol">
+                            <h:outputText value="#{usuario.rol.nombre}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Modificar Usuario" style="width:100px">
+                            <p:commandLink actionListener="#{editarEliminarUsuarioController.establecerUsuarioModificar(usuario)}"
+                                           oncomplete="PF('wdialogo1').show();" update=":frmDialogo:dialogo1">
+                                <h:graphicImage library="images" name='edit.png' width="30px"/>
+                            </p:commandLink>
+                        </p:column>
+                        
+                        <p:column headerText="Eliminar Usuario" style="width:100px">
+                            <p:commandLink actionListener="#{editarEliminarUsuarioController.establecerUsuarioEliminar(usuario)}"
+                                           oncomplete="PF('wdialogo1').show();" update=":frmDialogo:dialogo1">
+                                <h:graphicImage library="images" name='delete.png' width="30px"/>
+                            </p:commandLink>
+                        </p:column>
+                        
+                    </p:dataTable>
+                </h:form>
+                
+                <h:form id='frmDialogo'>
+                    <p:dialog id='dialogo1' widgetVar="wdialogo1" modal='true' closeOnEscape="true" draggable="false" resizable="false" header="Gestión de usuarios">
+                        <p:panelGrid columns="2">
+                            <p:outputLabel for="name" value="Nombre: " />
+                            <p:inputText id="name" required="true" value="#{editarEliminarUsuarioController.usuario.persona.nombre}" rendered="#{editarEliminarUsuarioController.accion =='M'}"  requiredMessage="Introduce tu nombre."/>
+                            <h:outputText  value="#{editarEliminarUsuarioController.usuario.persona.nombre}" rendered="#{editarEliminarUsuarioController.accion == 'E'}"/>   
+                                    
+                            <p:outputLabel for="apellido" value="Apellido: "/>
+                            <p:inputText id="apellido" required="true" value="#{editarEliminarUsuarioController.usuario.persona.apellido}" rendered="#{editarEliminarUsuarioController.accion =='M'}" requiredMessage="Introduce tu apellido"/>
+                            <h:outputText value="#{editarEliminarUsuarioController.usuario.persona.apellido}" rendered="#{editarEliminarUsuarioController.accion == 'E'}"/>          
+                                    
+                            <p:outputLabel for="sex" value="Sexo:"/>
+                            <p:selectOneButton id="sex" value="#{editarEliminarUsuarioController.usuario.persona.sexo}" rendered="#{editarEliminarUsuarioController.accion =='M'}" required="true" requiredMessage="Introduce tu sexo">
+                                <f:selectItem itemLabel="Masculino" itemValue='M'/>
+                                <f:selectItem itemLabel="Femenino" itemValue='F'/>
+                            </p:selectOneButton>
+                            <h:outputText value="#{editarEliminarUsuarioController.usuario.persona.sexo}" rendered="#{editarEliminarUsuarioController.accion == 'E'}"/>  
+                                    
+                            <p:outputLabel for="date" value="Fecha de nacimiento:"/>
+                            <p:calendar required="true" id="date"  rendered="#{editarEliminarUsuarioController.accion =='M'}" requiredMessage="Introduce tu fecha de nacimiento" showOn="button" locale="es" value="#{editarEliminarUsuarioController.usuario.persona.fechaNacimiento}"/>
+                            <h:outputText  value="#{editarEliminarUsuarioController.usuario.persona.fechaNacimiento}" rendered="#{editarEliminarUsuarioController.accion == 'E'}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" timeZone="Europe/Paris"/>
+                            </h:outputText>  
+                            
+                            <p:outputLabel for="userName" value="Nombre de usuario: " />
+                            <p:inputText id="userName" required="true" rendered="#{editarEliminarUsuarioController.accion =='M'}" value="#{editarEliminarUsuarioController.usuario.userName}" requiredMessage="Introduce tu nombre de usuario."/>
+                            <h:outputText value="#{editarEliminarUsuarioController.usuario.userName}" rendered="#{editarEliminarUsuarioController.accion == 'E'}"/>              
+
+
+                            <p:outputLabel for="password" value="Contraseña: " />
+                            <p:password id="password" required="true"  toggleMask="true" redisplay="true" rendered="#{editarEliminarUsuarioController.accion =='M'}" feedback="true" value="#{editarEliminarUsuarioController.usuario.contraseña}" requiredMessage="Introduce una contraseña."/>
+                            <h:outputText value="#{editarEliminarUsuarioController.usuario.contraseña}" rendered="#{editarEliminarUsuarioController.accion == 'E'}"/>             
+
+                            <p:outputLabel for="email" value="Correo Electrónico: "/>
+                            <p:inputText id="email" required="true" rendered="#{editarEliminarUsuarioController.accion =='M'}" value="#{editarEliminarUsuarioController.usuario.correoElectronico}" requiredMessage="Introduce un correo electrónico."/>
+                            <h:outputText value="#{editarEliminarUsuarioController.usuario.correoElectronico}" rendered="#{editarEliminarUsuarioController.accion == 'E'}"/>  
+                            
+                            <p:commandButton value="Modificar" actionListener="#{editarEliminarUsuarioController.modificarUsuario()}" update=":principal:tablaUsuarios"
+                                             oncomplete="PF('wdialogo1').hide();" rendered="#{editarEliminarUsuarioController.accion == 'M'}" />
+                            
+                            <p:commandButton value="Eliminar" actionListener="#{editarEliminarUsuarioController.eliminarUsuario()}" update=":principal:tablaUsuarios"
+                                             oncomplete="PF('wdialogo1').hide();" rendered="#{editarEliminarUsuarioController.accion == 'E'}" />      
+                            
+                            <p:commandButton value="Cancelar" oncomplete="PF('wdialogo1').hide();"/>
+                        </p:panelGrid>
+                            
+                        
+                    </p:dialog>
+                        
+                </h:form>
+                    
+                    
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

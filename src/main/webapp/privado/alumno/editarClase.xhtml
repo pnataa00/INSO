@@ -16,14 +16,14 @@
                 </p:messages>
                 <h:form id="principal">
                     <p:dataTable id="tabla" var="clase" value="#{claseAlumnoController.listaClases}" rows="10"
-                        paginator="true" paginatorPosition="both"
-                        paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                        currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
-                        rowsPerPageTemplate="5,10,{ShowAll|'All'}">
+                                 paginator="true" paginatorPosition="both"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                 rowsPerPageTemplate="5,10,{ShowAll|'All'}">
                         
                         <p:column headerText="Fecha">
                             <h:outputText value="#{clase.fecha}">
-                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"/>
+                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" timeZone="Europe/Paris"/>
                             </h:outputText>
                         </p:column>
                         
@@ -79,7 +79,7 @@
                 </h:form>
                 
                 <h:form id="frmDialogo">
-                    <p:dialog id="dialogo1" widgetVar="wdialogo1" modal="true" closeOnEscape="true" draggable="false" resizable="false" header="Apuntarse">
+                    <p:dialog id="dialogo1" widgetVar="wdialogo1" modal="true" closeOnEscape="true" draggable="false" resizable="false" header="Comentar y valorar">
                         <p:panelGrid columns="2">
                             <p:outputLabel value="Valoración"/>
                             <p:selectOneMenu value="#{claseAlumnoController.valoracion}">
@@ -94,19 +94,19 @@
                             <p:inputText value="#{claseAlumnoController.comentario}"/>
                             
                             <p:commandButton value="Confirmar" actionListener="#{claseAlumnoController.valorarComentarClase()}" update=":principal:tabla" oncomplete="PF('wdialogo1').hide();"/>
-                            
+                            <p:commandButton value="Cancelar" oncomplete="PF('wdialogo1').hide();"/>
                         </p:panelGrid>
                     </p:dialog>
                 </h:form>
                 
                 <h:form id="frmDialogo2">
-                    <p:dialog id="dialogo2" widgetVar="wdialogo2" modal="true" closeOnEscape="true" draggable="false" resizable="false" header="Apuntarse">
+                    <p:dialog id="dialogo2" widgetVar="wdialogo2" modal="true" closeOnEscape="true" draggable="false" resizable="false" header="Pagar">
                         <p:panelGrid columns="2">
                             <p:outputLabel value="Precio"/>
                             <p:outputLabel value="#{claseAlumnoController.clase.precio}"/>
                             
                             <p:commandButton value="Pagar" actionListener="#{claseAlumnoController.pagar()}" update=":principal:tabla" oncomplete="PF('wdialogo2').hide();"/>
-                            
+                            <p:commandButton value="Cancelar" oncomplete="PF('wdialogo2').hide();"/>
                         </p:panelGrid>
                     </p:dialog>
                 </h:form>
