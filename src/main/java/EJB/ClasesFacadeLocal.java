@@ -7,6 +7,7 @@ package EJB;
 
 import java.util.List;
 import javax.ejb.Local;
+import modelo.Asignaturas;
 import modelo.Clases;
 
 /**
@@ -23,6 +24,8 @@ public interface ClasesFacadeLocal {
     void remove(Clases clases);
 
     Clases find(Object id);
+    
+    List<Clases> findByAsignatura(Asignaturas asignatura);
 
     List<Clases> findAll();
 

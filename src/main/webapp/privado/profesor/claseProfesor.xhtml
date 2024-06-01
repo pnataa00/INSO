@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:outputScript library="js" name="spanishcalendar.js"/>
+    <body>
+
+        <ui:composition template="./../../WEB-INF/template/plantilla.xhtml">
+
+            <ui:define name="content">
+                
+                <p:messages id="msg" severity="info">
+                    <p:autoUpdate/>
+                </p:messages>
+                <h:form id="principal">
+                    <p:dataTable id="tabla" var="clase" value="#{claseProfesorController.listaClases}" rows="10"
+                                 paginator="true" paginatorPosition="both"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                                 rowsPerPageTemplate="5,10,{ShowAll|'All'}">
+                        
+                        <p:column headerText="Fecha">
+                            <h:outputText value="#{clase.fecha}">
+                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" timeZone="Europe/Paris"/>
+                            </h:outputText>
+                        </p:column>
+                        
+                        <p:column headerText="Asignatura">
+                            <h:outputText value="#{clase.asignatura.nombre}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Curso">
+                            <h:outputText value="#{clase.asignatura.curso}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Duración (Horas)">
+                            
+                            <h:outputText value="#{clase.duracion}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Precio">
+                            <h:outputText value="#{clase.precio}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Valoración">
+                            <h:outputText value="#{clase.valoracion}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Comentario Alumno">
+                            <h:outputText value="#{clase.comentariosFormattedAlumno}" escape="false"/>
+                        </p:column>
+                        
+                        <p:column headerText="Comentario Profesor">
+                            <h:outputText value="#{clase.comentariosFormattedProfesor}" escape="false"/>
+                        </p:column>
+                        
+                        <p:column headerText="Pagado">
+                            <h:outputText value="#{clase.pagado}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Comentar">
+                            <p:commandLink actionListener="#{claseProfesorController.establecerClase(clase)}" oncomplete="PF('wdialogo1').show();" update=":frmDialogo:dialogo1">
+                                <h:graphicImage library="images" name='edit.png' width="30px"/>
+                            </p:commandLink>
+                        </p:column>
+                        
+                        
+                        <p:column headerText="Editar Clase" style="width:100px">
+                            <p:commandLink actionListener="#{claseProfesorController.establecerClaseModificar(clase)}"
+                                           oncomplete="PF('wdialogo2').show();" update=":frmDialogo1:dialogo2">
+                                <h:graphicImage library="images" name="edit.png" width="30px"/>
+                            </p:commandLink>
+                        </p:column>
+                        
+                        
+                        
+                        
+                        <f:facet name="paginatorBottomLeft">                             
+                            <p:commandLink actionListener="#{claseProfesorController.establecerClaseInsertar()}"
+                                           oncomplete="PF('wdialogo2').show();" update=":frmDialogo1:dialogo2">
+                                <h:graphicImage library="images" name="add.png" width="30px"/>
+                            </p:commandLink>
+                        </f:facet>    
+                        
+                    
+                    </p:dataTable>
+                </h:form>
+                
+                <h:form id="frmDialogo">
+                    <p:dialog id="dialogo1" widgetVar="wdialogo1" modal="true" closeOnEscape="true" draggable="false" resizable="false" header="Comentar">
+                        <p:panelGrid columns="2">
+                            
+                            
+                            <p:outputLabel value="Comentario"/>
+                            <p:inputText value="#{claseProfesorController.comentario}"/>
+                            
+                            <p:commandButton value="Confirmar" actionListener="#{claseProfesorController.comentarClase()}" update=":principal:tabla" oncomplete="PF('wdialogo1').hide();"/>
+                            
+                        </p:panelGrid>
+                    </p:dialog>
+                </h:form>
+                
+                
+                <h:form id="frmDialogo1">
+                    <p:dialog id="dialogo2" widgetVar="wdialogo2" modal="true" closeOnEscape="true" draggable="false" resizable="false" header="Clases">
+                    
+                        <p:panelGrid columns="2" id="panel">
+                            
+                            <p:outputLabel for="subject" value="Asignaturas" rendered="#{claseProfesorController.accion=='R' || claseProfesorController.accion=='M'}"/>
+                            <p:selectOneMenu id="subject" value="#{claseProfesorController.asignatura}"  required="true" requiredMessage="Elige una asigntatura" rendered="#{claseProfesorController.accion=='R' || claseProfesorController.accion=='M'}">
+                                <f:selectItems value="#{claseProfesorController.asignaturas}" rendered="#{claseProfesorController.accion=='R' || claseProfesorController.accion=='M'}"/>
+                            </p:selectOneMenu>
+                            
+                            
+                            <p:outputLabel for="fecha" value="Fecha"/>
+                            <p:datePicker id="fecha" value="#{claseProfesorController.clase.fecha}" pattern="dd/MM/yyyy HH:mm:ss" locale="es" showTime="true" required="true" requiredMessage="Introduce una fecha"/>
+                            
+                            
+                            <p:outputLabel for="duracion" value="Duracion (max 4 horas)" rendered="#{claseProfesorController.accion=='R' || claseProfesorController.accion=='M'}"/>
+                            <p:inputNumber id="duracion" value="#{claseProfesorController.clase.duracion}" rendered="#{claseProfesorController.accion=='R' || claseProfesorController.accion=='M'}"  minValue="1" maxValue="4" decimalPlaces="0" required="true" requiredMessage="Introduce una duracion"/>
+                            
+                            
+                            <p:outputLabel for="precio" value="Precio" rendered="#{claseProfesorController.accion=='R' || claseProfesorController.accion=='M'}"/>
+                            <p:inputNumber id="precio" value="#{claseProfesorController.clase.precio}"  rendered="#{claseProfesorController.accion=='R' || claseProfesorController.accion=='M'}" modifyValueOnWheel="false" required="true" requiredMessage="Introduce el precio"/>
+                            
+                            
+                            <p:outputLabel for="pagado" value="Pagado:"/>
+                            <p:selectOneButton id="pagado" value="#{claseProfesorController.clase.pagado}" required="true" requiredMessage="Indica si ya se ha pagado o no">
+                                <f:selectItem itemLabel="No" itemValue='N'/>
+                                <f:selectItem itemLabel="Sí" itemValue='Y'/>
+                            </p:selectOneButton>
+                            
+                            
+                            
+
+                        
+                        
+                        
+                    
+                            <p:commandButton value="Agregar" actionListener="#{claseProfesorController.insertarClase()}" update=":principal:tabla"
+                                             oncomplete="PF('wdialogo2').hide();" rendered="#{claseProfesorController.accion=='R'}"/>
+
+                            
+
+                            <p:commandButton value="Modificar" actionListener="#{claseProfesorController.modificarClase()}" update=":principal:tabla"
+                                             oncomplete="PF('wdialogo2').hide();" rendered="#{claseProfesorController.accion=='M'}"/>
+
+
+                            <p:commandButton value="Cancelar" oncomplete="PF('wdialogo2').hide();"/>
+                        </p:panelGrid>
+                    </p:dialog>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

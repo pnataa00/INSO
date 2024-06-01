@@ -18,11 +18,14 @@
 
         <div id="top">           
             <ui:insert name="top">
+                <h:form>
+                    <p:commandButton value="Inicio" icon="pi pi-fw pi-home" styleClass="ui-button-info" actionListener="#{plantillaController.inicio()}"/>
+                </h:form>
                 
                 <p:menubar model="#{menuController.modelo}">
                     <f:facet name="options">
                         <h:form>
-                            <p:commandButton value="Cerrar Sesión" actionListener="#{menuController.destrurirSesionActual()}"/>
+                            <p:commandButton value="Cerrar Sesión" actionListener="#{menuController.destrurirSesionActual()}" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info"/>
                         </h:form>
                     </f:facet>
                 </p:menubar>

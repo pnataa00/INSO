@@ -6,14 +6,22 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -28,17 +36,40 @@ public class Clases implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idClase;
     
-    @JoinColumn(name="IdAlumno")
-    @ManyToOne
-    private Alumno alumno;
+    @Column(name="Fecha")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fecha;
     
-    @JoinColumn(name="IdProfesor")
-    @ManyToOne
-    private Profesor profesor;
+    @Column(name="Duracion")
+    private int duracion;
     
-    @JoinColumn(name="IdHorario")
+    @JoinColumn(name="IdAsignatura")
     @ManyToOne
-    private Horario horario;
+    private Asignaturas asignatura;
+    
+    @Column(name="Precio")
+    private int precio;
+    
+    @Column(name="Pagado")
+    private String pagado;
+    
+    @Column(name="ComentarioProfesor")
+    private String comentarioProfesor;
+    
+    @Column(name="ComentarioAlumno")
+    private String comentarioAlumno;
+    
+    @Column(name="Valoracion")
+    private String valoracion;
+    
+    
+    @ManyToMany
+    @JoinTable(
+            name="clases_usuarios",
+            joinColumns= @JoinColumn(name="IdClase"),
+            inverseJoinColumns = @JoinColumn(name = "IdUsuario")
+    )
+    private List<Usuario> usuarios;
 
     public int getIdClase() {
         return idClase;
@@ -48,66 +79,109 @@ public class Clases implements Serializable {
         this.idClase = idClase;
     }
 
-    public Alumno getAlumno() {
-        return alumno;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setAlumno(Alumno alumno) {
-        this.alumno = alumno;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
-    public Profesor getProfesor() {
-        return profesor;
+    public int getDuracion() {
+        return duracion;
     }
 
-    public void setProfesor(Profesor profesor) {
-        this.profesor = profesor;
+    public void setDuracion(int duracion) {
+        this.duracion = duracion;
     }
 
-    public Horario getHorario() {
-        return horario;
+    public Asignaturas getAsignatura() {
+        return asignatura;
     }
 
-    public void setHorario(Horario horario) {
-        this.horario = horario;
+    public void setAsignatura(Asignaturas asignatura) {
+        this.asignatura = asignatura;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 37 * hash + this.idClase;
-        hash = 37 * hash + Objects.hashCode(this.alumno);
-        hash = 37 * hash + Objects.hashCode(this.profesor);
-        hash = 37 * hash + Objects.hashCode(this.horario);
-        return hash;
+    public int getPrecio() {
+        return precio;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Clases other = (Clases) obj;
-        if (this.idClase != other.idClase) {
-            return false;
-        }
-        if (!Objects.equals(this.alumno, other.alumno)) {
-            return false;
-        }
-        if (!Objects.equals(this.profesor, other.profesor)) {
-            return false;
-        }
-        if (!Objects.equals(this.horario, other.horario)) {
-            return false;
-        }
-        return true;
+    public void setPrecio(int precio) {
+        this.precio = precio;
     }
+
+    public String getPagado() {
+        return pagado;
+    }
+
+    public void setPagado(String pagado) {
+        this.pagado = pagado;
+    }
+
+    public String getComentarioProfesor() {
+        return comentarioProfesor;
+    }
+
+    public void setComentarioProfesor(String comentarioProfesor) {
+        this.comentarioProfesor = comentarioProfesor;
+    }
+
+    public String getComentarioAlumno() {
+        return comentarioAlumno;
+    }
+
+    public void setComentarioAlumno(String comentarioAlumno) {
+        this.comentarioAlumno = comentarioAlumno;
+    }
+
+    public String getValoracion() {
+        return valoracion;
+    }
+
+    public void setValoracion(String valoracion) {
+        this.valoracion = valoracion;
+    }
+
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+    
+    public String getComentariosFormattedProfesor() {
+        if (this.getComentarioProfesor() != null) {
+            return this.getComentarioProfesor().replace("||", "<br/>");
+        }
+        return "";
+    }
+    
+    public String getComentariosFormattedAlumno() {
+        if (this.getComentarioAlumno() != null) {
+            return this.getComentarioAlumno().replace("||", "<br/>");
+        }
+        return "";
+    }
+
+    
+
+    
+    
+    
+    
+
+    
+    
+
+    
+
+    
+
+    
+    
+
     
     
     
